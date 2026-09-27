@@ -9,5 +9,9 @@ public abstract class ShipVTOLBaseState
         this.animator = animator;
     }
     public abstract void EnterState();
-
+    protected void ToggleThrusterAnims()
+    {
+        animator.ResetTrigger("ToggleVTOL");
+        animator.SetTrigger("ToggleVTOL");
+    }
 }
