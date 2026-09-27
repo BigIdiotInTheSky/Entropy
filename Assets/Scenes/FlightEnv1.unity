@@ -7406,9 +7406,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ThrusterEffectInfo
   thrusterMoveGroup: 1
-  pitchRotateGroup: 2
-  yawRotateGroup: 2
-  rollRotateGroup: 2
+  pitchRotateGroup: 0
+  yawRotateGroup: 0
+  rollRotateGroup: 0
   secondaryMoveGroup: 0
 --- !u!1 &438553816
 GameObject:
@@ -9722,9 +9722,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ThrusterEffectInfo
   thrusterMoveGroup: 1
-  pitchRotateGroup: 2
-  yawRotateGroup: 2
-  rollRotateGroup: 2
+  pitchRotateGroup: 0
+  yawRotateGroup: 0
+  rollRotateGroup: 0
   secondaryMoveGroup: 0
 --- !u!4 &465358849 stripped
 Transform:
@@ -75942,6 +75942,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5762125473406727929, guid: 2cd9e7c2a7b23864399dbe8de568ae6f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5847225104723377624, guid: 2cd9e7c2a7b23864399dbe8de568ae6f, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 0
@@ -76026,6 +76030,10 @@ PrefabInstance:
       propertyPath: 'm_Cameras.Array.data[0]'
       value: 
       objectReference: {fileID: 895070234}
+    - target: {fileID: 8714813175080561824, guid: 2cd9e7c2a7b23864399dbe8de568ae6f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8766784319311519284, guid: 2cd9e7c2a7b23864399dbe8de568ae6f, type: 3}
       propertyPath: m_Camera
       value: 
