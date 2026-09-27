@@ -15,7 +15,5 @@ public class ShipControlSystemManager : MonoBehaviour
         shipManager = GetComponent<ShipManager>();
         playerShipControlType = GetComponent<PlayerShipControlType>();
         activeShipControl = playerShipControlType;
-        Debug.Log(shipManager);
-        Debug.Log(activeShipControl);
     }
 }

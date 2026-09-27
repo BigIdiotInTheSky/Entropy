@@ -28,7 +28,6 @@ public class SMSStateManager
     }
     public void ToggleOnOff()
     {
-        Debug.Log("toggling");
         if (currentState == onState) { MoveOff(); }
         else { MoveOn(); }
     }

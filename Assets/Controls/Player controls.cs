@@ -303,6 +303,16 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""initialStateCheck"": false,
                     ""priority"": 0
+                },
+                {
+                    ""name"": ""toggle VTOL"",
+                    ""type"": ""Button"",
+                    ""id"": ""c6055377-f1cb-46a1-a201-bc769589d97b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
                 }
             ],
             ""bindings"": [
@@ -338,6 +348,17 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
                     ""action"": ""toggle thrust"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""19a464cf-9746-4442-a96e-801c67d91fb8"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""toggle VTOL"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -353,6 +374,7 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
         m_utility_gear = m_utility.FindAction("gear", throwIfNotFound: true);
         m_utility_jettison = m_utility.FindAction("jettison", throwIfNotFound: true);
         m_utility_togglethrust = m_utility.FindAction("toggle thrust", throwIfNotFound: true);
+        m_utility_toggleVTOL = m_utility.FindAction("toggle VTOL", throwIfNotFound: true);
     }
 
     ~@Playercontrols()
@@ -544,6 +566,7 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
     private readonly InputAction m_utility_gear;
     private readonly InputAction m_utility_jettison;
     private readonly InputAction m_utility_togglethrust;
+    private readonly InputAction m_utility_toggleVTOL;
     /// <summary>
     /// Provides access to input actions defined in input action map "utility".
     /// </summary>
@@ -567,6 +590,10 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "utility/togglethrust".
         /// </summary>
         public InputAction @togglethrust => m_Wrapper.m_utility_togglethrust;
+        /// <summary>
+        /// Provides access to the underlying input action "utility/toggleVTOL".
+        /// </summary>
+        public InputAction @toggleVTOL => m_Wrapper.m_utility_toggleVTOL;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -602,6 +629,9 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
             @togglethrust.started += instance.OnTogglethrust;
             @togglethrust.performed += instance.OnTogglethrust;
             @togglethrust.canceled += instance.OnTogglethrust;
+            @toggleVTOL.started += instance.OnToggleVTOL;
+            @toggleVTOL.performed += instance.OnToggleVTOL;
+            @toggleVTOL.canceled += instance.OnToggleVTOL;
         }
 
         /// <summary>
@@ -622,6 +652,9 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
             @togglethrust.started -= instance.OnTogglethrust;
             @togglethrust.performed -= instance.OnTogglethrust;
             @togglethrust.canceled -= instance.OnTogglethrust;
+            @toggleVTOL.started -= instance.OnToggleVTOL;
+            @toggleVTOL.performed -= instance.OnToggleVTOL;
+            @toggleVTOL.canceled -= instance.OnToggleVTOL;
         }
 
         /// <summary>
@@ -705,5 +738,12 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnTogglethrust(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "toggle VTOL" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnToggleVTOL(InputAction.CallbackContext context);
     }
 }

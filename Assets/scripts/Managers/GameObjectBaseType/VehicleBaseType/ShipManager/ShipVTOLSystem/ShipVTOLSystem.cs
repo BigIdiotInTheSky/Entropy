@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class ShipVTOLSystem : MonoBehaviour
 {
-    private ShipManager shipManager;
+    private Animator animator;
+    private ShipVTOLSystemStateManager shipVTOLSystemStateManager;
+    
+    public ShipVTOLSystemStateManager ShipVTOLSystemStateManager { get { return shipVTOLSystemStateManager; } }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        shipManager = GetComponent<ShipManager>();
+        animator = GetComponent<Animator>();
+        shipVTOLSystemStateManager = new ShipVTOLSystemStateManager(animator);
     }
 
     // Update is called once per frame

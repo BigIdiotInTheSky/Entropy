@@ -8,25 +8,26 @@ public class PlayerShipControlType : ShipControlBaseType
     [SerializeField] private InputActionReference move;
     [SerializeField] private InputActionReference rotate;
     [SerializeField] private InputActionReference toggleThrust;
-    // [SerializeField] private InputActionReference toggleVTOL;
+    [SerializeField] private InputActionReference toggleVTOL;
     private ShipControlSystemManager shipControlSystemManager;
     private void OnEnable()
     {
         move.action.Enable();
         rotate.action.Enable();
         toggleThrust.action.Enable();
-        // toggleVTOL.action.Enable();
+        toggleVTOL.action.Enable();
     }
     private void OnDisable()
     {
         move.action.Disable();
         rotate.action.Disable();
         toggleThrust.action.Disable();
-        // toggleVTOL.action.Disable();
+        toggleVTOL.action.Disable();
     }
     void Start()
     {
         toggleThrust.action.performed += ToggleThrustPerformed;
+        toggleVTOL.action.performed += ToggleVTOLPerformed;
         
         shipControlSystemManager = GetComponent<ShipControlSystemManager>();
     }
@@ -38,5 +39,9 @@ public class PlayerShipControlType : ShipControlBaseType
     void ToggleThrustPerformed(InputAction.CallbackContext context)
     {
         shipControlSystemManager.ShipManager.ShipMovementSystem.SMSStateManager.ToggleOnOff();
+    }
+    void ToggleVTOLPerformed(InputAction.CallbackContext context)
+    {
+        shipControlSystemManager.ShipManager.ShipVTOLSystem.ShipVTOLSystemStateManager.ToggleVTOLUpDown();
     }
 }
