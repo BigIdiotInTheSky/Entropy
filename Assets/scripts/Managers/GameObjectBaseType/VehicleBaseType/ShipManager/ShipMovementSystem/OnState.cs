@@ -12,8 +12,12 @@ public class OnState : SMSBaseState
     private RotationStateManager rotationStateManagerX;
     private RotationStateManager rotationStateManagerY;
     private RotationStateManager rotationStateManagerZ;
+    private StateManager vtolStateManager;
     private ShipManager shipManager;
-    public OnState(SMSStateManager sMSStateManager, Dictionary<string,List<ThrusterEffectInfo>> moveThrusters, Dictionary<string,List<ThrusterEffectInfo>> rotateThrusters, ShipManager shipManager) : base(sMSStateManager, moveThrusters, rotateThrusters)
+
+    public StateManager VTOLStateManager { get { return vtolStateManager; } }
+    public OnState(SMSStateManager sMSStateManager, Dictionary<string,List<ThrusterEffectInfo>> moveThrusters, Dictionary<string,List<ThrusterEffectInfo>> rotateThrusters, 
+        Dictionary<string,List<ThrusterEffectInfo>> vtolThrusters, ShipManager shipManager) : base(sMSStateManager, moveThrusters, rotateThrusters, vtolThrusters)
     {
         this.shipManager = shipManager;
         initStateManagers();
@@ -47,7 +51,9 @@ public class OnState : SMSBaseState
             rotateThrusters["yawNegativeThrusters"],rotateThrusters["yawPositiveThrusters"],this);
         rotationStateManagerZ = new RotationStateManager(shipManager.ShipProfile.TorqueForce, shipManager.Rb, 
             rotateThrusters["rollNegativeThrusters"],rotateThrusters["rollPositiveThrusters"],this);
-
+        
+        vtolStateManager = new StateManager(false, shipManager.ShipProfile.PositiveVTOLForce, shipManager.ShipProfile.PositiveVTOLForce, shipManager.Rb, 
+            vtolThrusters["upThrusters"], vtolThrusters["downThrusters"], this);
     }
     public void ToggleThrusters(bool activeInactive, List<ThrusterEffectInfo> thrusterEffects)
     {

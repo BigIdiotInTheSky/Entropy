@@ -8,6 +8,10 @@ public abstract class BaseState
     protected bool dampen;
     protected List<ThrusterEffectInfo> moveThrusters;
     private OnState smsOnState;
+
+    public bool Dampen { get { return dampen; } set { dampen = value; } }
+    public List<ThrusterEffectInfo> MoveThrusters { get { return moveThrusters; } set { moveThrusters = value; } }
+
     protected BaseState(StateManager stateManager, bool dampen, List<ThrusterEffectInfo> moveThrusters, OnState smsOnState)
     {
         this.smsOnState = smsOnState;

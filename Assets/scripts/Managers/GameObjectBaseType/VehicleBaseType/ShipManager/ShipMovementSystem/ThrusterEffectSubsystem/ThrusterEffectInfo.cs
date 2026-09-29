@@ -44,9 +44,6 @@ public class ThrusterEffectInfo : MonoBehaviour
     [Serializable] private enum SecondaryMoveGroup
     {
         none,
-        foreThrusters,
-        rightThrusters,
-        leftThrusters,
         upThrusters,
         downThrusters
     }
@@ -60,6 +57,7 @@ public class ThrusterEffectInfo : MonoBehaviour
         FindThrusterList(shipMovementSystem.RotateThrusters, pitchRotateGroup.ToString());
         FindThrusterList(shipMovementSystem.RotateThrusters, yawRotateGroup.ToString());
         FindThrusterList(shipMovementSystem.RotateThrusters, rollRotateGroup.ToString());
+        FindThrusterList(shipMovementSystem.VTOLThrusters,secondaryMoveGroup.ToString());
         thrusterEffectStateManager = new ThrusterEffectStateManager(this);
     }
     

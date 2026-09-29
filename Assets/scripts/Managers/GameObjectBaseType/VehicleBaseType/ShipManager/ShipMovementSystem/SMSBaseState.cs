@@ -7,11 +7,14 @@ public abstract class SMSBaseState
     protected SMSStateManager sMSStateManager;
     protected Dictionary<string,List<ThrusterEffectInfo>>  moveThrusters;
     protected Dictionary<string,List<ThrusterEffectInfo>>  rotateThrusters;
-    public SMSBaseState(SMSStateManager sMSStateManager, Dictionary<string,List<ThrusterEffectInfo>> moveThrusters, Dictionary<string,List<ThrusterEffectInfo>> rotateThrusters) 
+    protected Dictionary<string,List<ThrusterEffectInfo>> vtolThrusters;
+    public SMSBaseState(SMSStateManager sMSStateManager, Dictionary<string,List<ThrusterEffectInfo>> moveThrusters, Dictionary<string,List<ThrusterEffectInfo>> rotateThrusters, 
+        Dictionary<string,List<ThrusterEffectInfo>> vtolThrusters) 
     { 
         this.sMSStateManager = sMSStateManager;
         this.moveThrusters = moveThrusters;
         this.rotateThrusters = rotateThrusters;
+        this.vtolThrusters = vtolThrusters;
     }
     protected void ToggleMoveThrusters(bool doMove)
     {
