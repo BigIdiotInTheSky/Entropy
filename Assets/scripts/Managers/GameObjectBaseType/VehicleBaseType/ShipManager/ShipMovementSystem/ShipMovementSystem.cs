@@ -8,6 +8,7 @@ public class ShipMovementSystem : MonoBehaviour
     private Dictionary<string,List<ThrusterEffectInfo>> moveThrusters;
     private Dictionary<string,List<ThrusterEffectInfo>> rotateThrusters;
     private Dictionary<string, Dictionary<string, List<ThrusterEffectInfo>>> vtolThrusters;
+    public ShipManager ShipManager { get { return shipManager; } }
     public SMSStateManager SMSStateManager { get { return sMSStateManager; } }
     public Dictionary<string,List<ThrusterEffectInfo>> RotateThrusters { get { return rotateThrusters; } }
     public Dictionary<string,List<ThrusterEffectInfo>> MoveThrusters { get { return moveThrusters; } }
@@ -54,7 +55,7 @@ public class ShipMovementSystem : MonoBehaviour
     {
         InitThrusters(); 
         shipManager = GetComponent<ShipManager>();  
-        sMSStateManager = new SMSStateManager(moveThrusters, rotateThrusters, vtolThrusters["upPos"], shipManager);
+        sMSStateManager = new SMSStateManager(this);
 
     }
     

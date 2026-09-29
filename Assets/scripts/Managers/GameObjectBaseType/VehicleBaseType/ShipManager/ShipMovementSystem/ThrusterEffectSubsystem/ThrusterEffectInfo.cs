@@ -54,7 +54,7 @@ public class ThrusterEffectInfo : MonoBehaviour
         var main = particleSystem.emission;
         main.enabled = false;
         shipMovementSystem = GetShipMovementSystem();
-        FindThrusterList(shipMovementSystem.MoveThrusters, thrusterMoveGroup.ToString());
+        if (secondaryMoveGroup == SecondaryMoveGroup.none) FindThrusterList(shipMovementSystem.MoveThrusters, thrusterMoveGroup.ToString());
         if (pitchRotateGroup != PitchRotateGroup.none) FindThrusterList(shipMovementSystem.RotateThrusters, pitchRotateGroup.ToString());
         if (yawRotateGroup != YawRotateGroup.none) FindThrusterList(shipMovementSystem.RotateThrusters, yawRotateGroup.ToString());
         if (rollRotateGroup != RollRotateGroup.none) FindThrusterList(shipMovementSystem.RotateThrusters, rollRotateGroup.ToString());

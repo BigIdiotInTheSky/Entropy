@@ -6,10 +6,10 @@ public class ShipVTOLSystemStateManager
     private ShipVTOLDownState shipVTOLDownState;
     private ShipVTOLUpState shipVTOLUpState;
 
-    public ShipVTOLSystemStateManager(Animator animator, Dictionary<string, List<ThrusterEffectInfo>> vtolThrustersDown, Dictionary<string, List<ThrusterEffectInfo>> vtolThrustersUp)
+    public ShipVTOLSystemStateManager(Animator animator, Dictionary<string, Dictionary<string, List<ThrusterEffectInfo>>> vtolThrusters, StateManager vtolStateManager, ShipVTOLSystem shipVTOLSystem)
     {
-        shipVTOLDownState = new ShipVTOLDownState(animator, vtolThrustersDown, vtolThrustersDown);
-        shipVTOLUpState = new ShipVTOLUpState(animator, vtolThrustersDown, vtolThrustersUp);
+        shipVTOLDownState = new ShipVTOLDownState(animator, vtolThrusters["downPos"], vtolStateManager, shipVTOLSystem);
+        shipVTOLUpState = new ShipVTOLUpState(animator, vtolThrusters["upPos"], vtolStateManager, shipVTOLSystem);
         currentShipVTOLState = shipVTOLUpState;
     }
 
