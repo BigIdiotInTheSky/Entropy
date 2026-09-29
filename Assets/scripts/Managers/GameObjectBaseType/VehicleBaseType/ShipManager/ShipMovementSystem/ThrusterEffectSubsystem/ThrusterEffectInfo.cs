@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using NUnit.Framework.Constraints;
 using UnityEngine;
 
 public class ThrusterEffectInfo : MonoBehaviour
@@ -54,10 +55,11 @@ public class ThrusterEffectInfo : MonoBehaviour
         main.enabled = false;
         shipMovementSystem = GetShipMovementSystem();
         FindThrusterList(shipMovementSystem.MoveThrusters, thrusterMoveGroup.ToString());
-        FindThrusterList(shipMovementSystem.RotateThrusters, pitchRotateGroup.ToString());
-        FindThrusterList(shipMovementSystem.RotateThrusters, yawRotateGroup.ToString());
-        FindThrusterList(shipMovementSystem.RotateThrusters, rollRotateGroup.ToString());
-        FindThrusterList(shipMovementSystem.VTOLThrusters,secondaryMoveGroup.ToString());
+        if (pitchRotateGroup != PitchRotateGroup.none) FindThrusterList(shipMovementSystem.RotateThrusters, pitchRotateGroup.ToString());
+        if (yawRotateGroup != YawRotateGroup.none) FindThrusterList(shipMovementSystem.RotateThrusters, yawRotateGroup.ToString());
+        if (rollRotateGroup != RollRotateGroup.none) FindThrusterList(shipMovementSystem.RotateThrusters, rollRotateGroup.ToString());
+        if (secondaryMoveGroup != SecondaryMoveGroup.none) FindThrusterList(shipMovementSystem.VTOLThrusters["upPos"],secondaryMoveGroup.ToString());
+        if (secondaryMoveGroup != SecondaryMoveGroup.none) FindThrusterList(shipMovementSystem.VTOLThrusters["downPos"], thrusterMoveGroup.ToString());
         thrusterEffectStateManager = new ThrusterEffectStateManager(this);
     }
     

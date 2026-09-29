@@ -1,20 +1,15 @@
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
-
 public class ShipVTOLSystemStateManager
 {
     private ShipVTOLBaseState currentShipVTOLState;
     private ShipVTOLDownState shipVTOLDownState;
     private ShipVTOLUpState shipVTOLUpState;
 
-    // public ShipVTOLBaseState CurrentShipVTOLState { get { return currentShipVTOLState; } set { currentShipVTOLState = value; currentShipVTOLState.EnterState(); } }
-    // public ShipVTOLDownState ShipVTOLDownState { get { return shipVTOLDownState; } }
-    // public ShipVTOLUpState ShipVTOLUpState { get { return shipVTOLUpState; } }
-
-    public ShipVTOLSystemStateManager(Animator animator)
+    public ShipVTOLSystemStateManager(Animator animator, Dictionary<string, List<ThrusterEffectInfo>> vtolThrustersDown, Dictionary<string, List<ThrusterEffectInfo>> vtolThrustersUp)
     {
-        shipVTOLDownState = new ShipVTOLDownState(animator);
-        shipVTOLUpState = new ShipVTOLUpState(animator);
+        shipVTOLDownState = new ShipVTOLDownState(animator, vtolThrustersDown, vtolThrustersDown);
+        shipVTOLUpState = new ShipVTOLUpState(animator, vtolThrustersDown, vtolThrustersUp);
         currentShipVTOLState = shipVTOLUpState;
     }
 

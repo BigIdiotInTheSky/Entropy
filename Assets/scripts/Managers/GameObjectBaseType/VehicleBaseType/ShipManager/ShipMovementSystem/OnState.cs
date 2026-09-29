@@ -52,8 +52,8 @@ public class OnState : SMSBaseState
         rotationStateManagerZ = new RotationStateManager(shipManager.ShipProfile.TorqueForce, shipManager.Rb, 
             rotateThrusters["rollNegativeThrusters"],rotateThrusters["rollPositiveThrusters"],this);
         
-        vtolStateManager = new StateManager(false, shipManager.ShipProfile.PositiveVTOLForce, shipManager.ShipProfile.PositiveVTOLForce, shipManager.Rb, 
-            vtolThrusters["upThrusters"], vtolThrusters["downThrusters"], this);
+        // vtolStateManager = new StateManager(false, shipManager.ShipProfile.PositiveVTOLForce, shipManager.ShipProfile.PositiveVTOLForce, shipManager.Rb, 
+        //     vtolThrusters["upThrusters"], vtolThrusters["downThrusters"], this);
     }
     public void ToggleThrusters(bool activeInactive, List<ThrusterEffectInfo> thrusterEffects)
     {

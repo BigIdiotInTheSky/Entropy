@@ -7,11 +7,11 @@ public class ShipMovementSystem : MonoBehaviour
     private ShipManager shipManager;
     private Dictionary<string,List<ThrusterEffectInfo>> moveThrusters;
     private Dictionary<string,List<ThrusterEffectInfo>> rotateThrusters;
-    private Dictionary<string,List<ThrusterEffectInfo>> vtolThrusters;
+    private Dictionary<string, Dictionary<string, List<ThrusterEffectInfo>>> vtolThrusters;
     public SMSStateManager SMSStateManager { get { return sMSStateManager; } }
     public Dictionary<string,List<ThrusterEffectInfo>> RotateThrusters { get { return rotateThrusters; } }
     public Dictionary<string,List<ThrusterEffectInfo>> MoveThrusters { get { return moveThrusters; } }
-    public Dictionary<string,List<ThrusterEffectInfo>> VTOLThrusters { get { return vtolThrusters; } }
+    public Dictionary<string, Dictionary<string, List<ThrusterEffectInfo>>> VTOLThrusters { get { return vtolThrusters; } }
 
     private void InitThrusters()
     {
@@ -33,10 +33,20 @@ public class ShipMovementSystem : MonoBehaviour
             { "rollPositiveThrusters", new List<ThrusterEffectInfo>() },
             { "rollNegativeThrusters", new List<ThrusterEffectInfo>() }
         };
-        vtolThrusters = new Dictionary<string, List<ThrusterEffectInfo>>
+        vtolThrusters = new Dictionary<string, Dictionary<string, List<ThrusterEffectInfo>>>
         {
-            { "upThrusters", new List<ThrusterEffectInfo>() },
-            { "downThrusters", new List<ThrusterEffectInfo>() },
+            { "downPos", new Dictionary<string, List<ThrusterEffectInfo>>
+                {
+                    { "upThrusters", new List<ThrusterEffectInfo>() },
+                    { "downThrusters", new List<ThrusterEffectInfo>() },
+                }
+            },
+            { "upPos", new Dictionary<string, List<ThrusterEffectInfo>>
+                {
+                    { "foreThrusters", new List<ThrusterEffectInfo>() },
+                    { "aftThrusters", new List<ThrusterEffectInfo>() }
+                }
+            }
         };
     }
 
@@ -44,7 +54,7 @@ public class ShipMovementSystem : MonoBehaviour
     {
         InitThrusters(); 
         shipManager = GetComponent<ShipManager>();  
-        sMSStateManager = new SMSStateManager(moveThrusters, rotateThrusters, vtolThrusters, shipManager);
+        sMSStateManager = new SMSStateManager(moveThrusters, rotateThrusters, vtolThrusters["upPos"], shipManager);
 
     }
     
