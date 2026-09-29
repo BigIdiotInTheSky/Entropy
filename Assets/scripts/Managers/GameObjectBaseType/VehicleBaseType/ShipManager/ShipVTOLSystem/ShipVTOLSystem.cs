@@ -22,7 +22,8 @@ public class ShipVTOLSystem : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         shipManager = GetComponent<ShipManager>();
-        // shipVTOLSystemStateManager = new ShipVTOLSystemStateManager(animator, shipManager.ShipMovementSystem.VTOLThrusters, shipManager.ShipMovementSystem.SMSStateManager.OnState.VTOLStateManager, this);
+        Debug.Log(shipManager);
+        shipVTOLSystemStateManager = new ShipVTOLSystemStateManager(this);
     }
 
     // Update is called once per frame

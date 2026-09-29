@@ -34,7 +34,7 @@ public class OnState : SMSBaseState
         rotationStateManagerY.CurrentState.UpdateState(rotate.y, (float)Math.Round(localT.y,2), shipManager.Trans.up);
         rotationStateManagerZ.CurrentState.UpdateState(rotate.z, (float)Math.Round(localT.z,2), shipManager.Trans.forward);
 
-        // vtolStateManager.CurrentState.UpdateState(shipManager.ShipVTOLSystem.MoveActionValue, shipManager.ShipVTOLSystem.LocalV, shipManager.ShipVTOLSystem.Trans);
+        vtolStateManager.CurrentState.UpdateState(shipManager.ShipVTOLSystem.MoveActionValue, shipManager.ShipVTOLSystem.LocalV, shipManager.ShipVTOLSystem.Trans);
     }
     public override void EnterState() { ToggleMoveThrusters(true); }
 
@@ -54,8 +54,8 @@ public class OnState : SMSBaseState
         rotationStateManagerZ = new RotationStateManager(shipManager.ShipProfile.TorqueForce, shipManager.Rb, 
             rotateThrusters["rollNegativeThrusters"],rotateThrusters["rollPositiveThrusters"],this);
         
-        // vtolStateManager = new StateManager(false, shipManager.ShipProfile.PositiveVTOLForce, shipManager.ShipProfile.PositiveVTOLForce, shipManager.Rb, 
-        //     vtolThrusters["foreThrusters"], vtolThrusters["aftThrusters"], this);
+        vtolStateManager = new StateManager(false, shipManager.ShipProfile.PositiveVTOLForce, shipManager.ShipProfile.PositiveVTOLForce, shipManager.Rb, 
+            vtolThrusters["foreThrusters"], vtolThrusters["aftThrusters"], this);
     }
     public void ToggleThrusters(bool activeInactive, List<ThrusterEffectInfo> thrusterEffects)
     {

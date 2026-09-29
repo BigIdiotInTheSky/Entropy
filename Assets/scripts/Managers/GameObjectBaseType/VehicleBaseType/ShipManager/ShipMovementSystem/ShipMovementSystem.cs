@@ -53,7 +53,7 @@ public class ShipMovementSystem : MonoBehaviour
 
     void Awake()
     {
-        InitThrusters(); 
+        InitThrusters();
         shipManager = GetComponent<ShipManager>();  
         sMSStateManager = new SMSStateManager(this);
 

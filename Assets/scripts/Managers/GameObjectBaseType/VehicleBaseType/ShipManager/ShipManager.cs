@@ -14,7 +14,7 @@ public class ShipManager : VehicleTypeBase
     public ShipControlSystemManager ShipControlSystemManager { get { return shipControlSystemManager; } }
     public ShipVTOLSystem ShipVTOLSystem { get { return shipVTOLSystem;} }
     // public ShipLandingSystem ShipLandingSystem { get { return ShipLandingSystem; } }
-    void Start()
+    void Awake()
     {
         shipMovementSystem = GetComponent<ShipMovementSystem>();
         shipControlSystemManager = GetComponent<ShipControlSystemManager>();
