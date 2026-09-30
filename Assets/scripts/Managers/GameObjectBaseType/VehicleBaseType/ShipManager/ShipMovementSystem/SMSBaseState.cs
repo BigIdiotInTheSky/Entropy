@@ -16,9 +16,17 @@ public abstract class SMSBaseState
         this.rotateThrusters = rotateThrusters;
         this.vtolThrusters = vtolThrusters;
     }
-    protected void ToggleMoveThrusters(bool doMove)
+    protected void ToggleThrusters(bool doMove)
     {
         foreach(KeyValuePair<string,List<ThrusterEffectInfo>> pair in moveThrusters)
+        {
+            List <ThrusterEffectInfo> list = pair.Value;
+            for(int i = 0; i < list.Count; i++)
+            {
+                list[i].ToggleThrusterOnOff(doMove);
+            }
+        }
+        foreach(KeyValuePair<string,List<ThrusterEffectInfo>> pair in vtolThrusters)
         {
             List <ThrusterEffectInfo> list = pair.Value;
             for(int i = 0; i < list.Count; i++)

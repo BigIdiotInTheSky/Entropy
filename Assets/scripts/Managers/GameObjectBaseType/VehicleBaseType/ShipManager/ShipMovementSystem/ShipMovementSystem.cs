@@ -56,7 +56,6 @@ public class ShipMovementSystem : MonoBehaviour
         InitThrusters();
         shipManager = GetComponent<ShipManager>();  
         sMSStateManager = new SMSStateManager(this);
-
     }
     
     void FixedUpdate()

@@ -42,7 +42,7 @@ public class OnState : SMSBaseState
         vtolStateManager.CurrentState.UpdateState(shipManager.ShipVTOLSystem.ShipVTOLSystemStateManager.CurrentShipVTOLState.MoveActionValue,
             shipManager.ShipVTOLSystem.ShipVTOLSystemStateManager.CurrentShipVTOLState.LocalV, shipManager.ShipVTOLSystem.ShipVTOLSystemStateManager.CurrentShipVTOLState.Trans);
     }
-    public override void EnterState() { ToggleMoveThrusters(true); }
+    public override void EnterState() { ToggleThrusters(true); }
 
     private void initStateManagers()
     {

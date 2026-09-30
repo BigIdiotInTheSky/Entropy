@@ -58,8 +58,8 @@ public class ThrusterEffectInfo : MonoBehaviour
         if (pitchRotateGroup != PitchRotateGroup.none) FindThrusterList(shipMovementSystem.RotateThrusters, pitchRotateGroup.ToString());
         if (yawRotateGroup != YawRotateGroup.none) FindThrusterList(shipMovementSystem.RotateThrusters, yawRotateGroup.ToString());
         if (rollRotateGroup != RollRotateGroup.none) FindThrusterList(shipMovementSystem.RotateThrusters, rollRotateGroup.ToString());
-        if (secondaryMoveGroup != SecondaryMoveGroup.none) FindThrusterList(shipMovementSystem.VTOLThrusters["upPos"],secondaryMoveGroup.ToString());
-        if (secondaryMoveGroup != SecondaryMoveGroup.none) FindThrusterList(shipMovementSystem.VTOLThrusters["downPos"], thrusterMoveGroup.ToString());
+        if (secondaryMoveGroup != SecondaryMoveGroup.none) FindThrusterList(shipMovementSystem.VTOLThrusters["upPos"],thrusterMoveGroup.ToString());;
+        if (secondaryMoveGroup != SecondaryMoveGroup.none) FindThrusterList(shipMovementSystem.VTOLThrusters["downPos"], secondaryMoveGroup.ToString());
         thrusterEffectStateManager = new ThrusterEffectStateManager(this);
     }
     
