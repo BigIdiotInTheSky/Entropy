@@ -9,12 +9,12 @@ public class ShipVTOLDownState : ShipVTOLBaseState
         ToggleThrusterAnims();
         vtolStateManager.PositiveAccelerationState.Dampen = true;
         vtolStateManager.NegativeAccelerationState.Dampen = true;
-        vtolStateManager.PositiveAccelerationState.MoveThrusters = vtolThrusters["upThrusters"];
-        vtolStateManager.NegativeAccelerationState.MoveThrusters = vtolThrusters["downThrusters"];
+        vtolStateManager.PositiveAccelerationState.MoveThrusters = vtolThrusters["downThrusters"];
+        vtolStateManager.NegativeAccelerationState.MoveThrusters = vtolThrusters["upThrusters"];
     }
     public override void UpdateState(Vector3 localV)
     {
-        moveActionValue = shipVTOLSystem.ShipManager.ShipControlSystem.CurrentControlType.MoveOutput.y;
+        moveActionValue = shipVTOLSystem.ShipManager.ShipControlSystem.CurrentControlType.MoveOutput.y*-1;
         localv = localV.y;
         trans = shipVTOLSystem.ShipManager.Trans.up;
     }

@@ -11,7 +11,6 @@ public class ShipVTOLUpState : ShipVTOLBaseState
         vtolStateManager.NegativeAccelerationState.Dampen = false;
         vtolStateManager.PositiveAccelerationState.MoveThrusters = vtolThrusters["foreThrusters"];
         vtolStateManager.NegativeAccelerationState.MoveThrusters = vtolThrusters["aftThrusters"];
-        Debug.Log(vtolThrusters["foreThrusters"].Count);
     }
     public override void UpdateState(Vector3 localV)
     {
