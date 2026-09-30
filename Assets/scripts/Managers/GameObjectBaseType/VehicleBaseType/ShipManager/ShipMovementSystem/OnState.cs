@@ -40,7 +40,7 @@ public class OnState : SMSBaseState
         rotationStateManagerZ.CurrentState.UpdateState(rotateOutput.z, (float)Math.Round(localT.z,2), trans.forward);
 
         vtolStateManager.CurrentState.UpdateState(shipManager.ShipVTOLSystem.ShipVTOLSystemStateManager.CurrentShipVTOLState.MoveActionValue,
-            shipManager.ShipVTOLSystem.ShipVTOLSystemStateManager.CurrentShipVTOLState.LocalV, shipManager.ShipVTOLSystem.ShipVTOLSystemStateManager.CurrentShipVTOLState.Trans);
+            (float)Math.Round(shipManager.ShipVTOLSystem.ShipVTOLSystemStateManager.CurrentShipVTOLState.LocalV,1), shipManager.ShipVTOLSystem.ShipVTOLSystemStateManager.CurrentShipVTOLState.Trans);
     }
     public override void EnterState() { ToggleThrusters(true); }
 
