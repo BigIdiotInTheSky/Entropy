@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ShipVTOLDownState : ShipVTOLBaseState
 {
-    public ShipVTOLDownState (Animator animator, Dictionary<string, List<ThrusterEffectInfo>> vtolThrusters, StateManager vtolStateManager, ShipVTOLSystem shipVTOLSystem) : base (animator, vtolThrusters, vtolStateManager, shipVTOLSystem) {}
+    public ShipVTOLDownState (Animator animator, Dictionary<string, List<ThrusterEffectInfo>> vtolThrusters, StateManager vtolStateManager) : base (animator, vtolThrusters, vtolStateManager) {}
     public override void EnterState() 
     {
         ToggleThrusterAnims();
@@ -12,8 +12,8 @@ public class ShipVTOLDownState : ShipVTOLBaseState
         vtolStateManager.PositiveAccelerationState.MoveThrusters = vtolThrusters["upThrusters"];
         vtolStateManager.NegativeAccelerationState.MoveThrusters = vtolThrusters["downThrusters"];
     }
-    public override void UpdateState()
+    public override void UpdateState(Vector3 moveActionValue, float localV, Transform trans)
     {
-        throw new System.NotImplementedException();
+
     }
 }

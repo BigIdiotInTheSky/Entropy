@@ -22,13 +22,12 @@ public class ShipVTOLSystem : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         shipManager = GetComponent<ShipManager>();
-        Debug.Log(shipManager);
         shipVTOLSystemStateManager = new ShipVTOLSystemStateManager(this);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

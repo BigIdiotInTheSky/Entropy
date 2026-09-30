@@ -9,9 +9,9 @@ public class ShipVTOLSystemStateManager
     public ShipVTOLSystemStateManager(ShipVTOLSystem shipVTOLSystem)
     {
         shipVTOLDownState = new ShipVTOLDownState(shipVTOLSystem.Animator, shipVTOLSystem.ShipManager.ShipMovementSystem.VTOLThrusters["downPos"], 
-            shipVTOLSystem.ShipManager.ShipMovementSystem.SMSStateManager.OnState.VTOLStateManager, shipVTOLSystem);
+            shipVTOLSystem.ShipManager.ShipMovementSystem.SMSStateManager.OnState.VTOLStateManager);
         shipVTOLUpState = new ShipVTOLUpState(shipVTOLSystem.Animator, shipVTOLSystem.ShipManager.ShipMovementSystem.VTOLThrusters["upPos"], 
-            shipVTOLSystem.ShipManager.ShipMovementSystem.SMSStateManager.OnState.VTOLStateManager, shipVTOLSystem);
+            shipVTOLSystem.ShipManager.ShipMovementSystem.SMSStateManager.OnState.VTOLStateManager);
         currentShipVTOLState = shipVTOLUpState;
     }
 

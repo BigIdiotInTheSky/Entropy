@@ -22,17 +22,22 @@ public class OnState : SMSBaseState
         this.shipManager = shipManager;
         initStateManagers();
     }
-    public override void UpdateState(Transform transform, Vector3 move, Vector3 rotate) 
+    public override void UpdateState() 
     {   
-        Vector3 localV = transform.InverseTransformDirection(shipManager.Rb.linearVelocity);
-        stateManagerX.CurrentState.UpdateState(move.x, (float)Math.Round(localV.x,1), shipManager.Trans.right);
-        stateManagerY.CurrentState.UpdateState(move.y*-1, (float)Math.Round(localV.y,1), shipManager.Trans.up);
-        stateManagerZ.CurrentState.UpdateState(move.z, (float)Math.Round(localV.z,1), shipManager.Trans.forward);
+        Rigidbody rb = shipManager.Rb;
+        Transform trans = shipManager.Trans;
+        Vector3 moveOutput = shipManager.ShipControlSystem.CurrentControlType.MoveOutput;
+        Vector3 rotateOutput = shipManager.ShipControlSystem.CurrentControlType.RotateOutput;
 
-        Vector3 localT = transform.InverseTransformDirection(shipManager.Rb.angularVelocity);
-        rotationStateManagerX.CurrentState.UpdateState(rotate.x, (float)Math.Round(localT.x,2), shipManager.Trans.right);
-        rotationStateManagerY.CurrentState.UpdateState(rotate.y, (float)Math.Round(localT.y,2), shipManager.Trans.up);
-        rotationStateManagerZ.CurrentState.UpdateState(rotate.z, (float)Math.Round(localT.z,2), shipManager.Trans.forward);
+        Vector3 localV = shipManager.Trans.InverseTransformDirection(rb.linearVelocity);
+        stateManagerX.CurrentState.UpdateState(moveOutput.x, (float)Math.Round(localV.x,1), trans.right);
+        stateManagerY.CurrentState.UpdateState(moveOutput.y*-1, (float)Math.Round(localV.y,1), trans.up);
+        stateManagerZ.CurrentState.UpdateState(moveOutput.z, (float)Math.Round(localV.z,1), trans.forward);
+
+        Vector3 localT = shipManager.Trans.InverseTransformDirection(rb.angularVelocity);
+        rotationStateManagerX.CurrentState.UpdateState(rotateOutput.x, (float)Math.Round(localT.x,2), trans.right);
+        rotationStateManagerY.CurrentState.UpdateState(rotateOutput.y, (float)Math.Round(localT.y,2), trans.up);
+        rotationStateManagerZ.CurrentState.UpdateState(rotateOutput.z, (float)Math.Round(localT.z,2), trans.forward);
 
         vtolStateManager.CurrentState.UpdateState(shipManager.ShipVTOLSystem.MoveActionValue, shipManager.ShipVTOLSystem.LocalV, shipManager.ShipVTOLSystem.Trans);
     }

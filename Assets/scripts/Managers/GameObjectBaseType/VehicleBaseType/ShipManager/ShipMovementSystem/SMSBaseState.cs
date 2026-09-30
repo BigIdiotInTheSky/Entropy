@@ -28,6 +28,6 @@ public abstract class SMSBaseState
         }
     }
     public abstract void EnterState();
-    public abstract void UpdateState(Transform transform, Vector3 move, Vector3 rotate);
+    public abstract void UpdateState();
 
 }

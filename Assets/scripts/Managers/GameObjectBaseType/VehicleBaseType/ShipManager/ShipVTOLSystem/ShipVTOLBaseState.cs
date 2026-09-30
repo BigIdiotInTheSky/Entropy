@@ -7,16 +7,14 @@ public abstract class ShipVTOLBaseState
     protected Animator animator;
     protected Dictionary<string, List<ThrusterEffectInfo>> vtolThrusters;
     protected StateManager vtolStateManager;
-    protected ShipVTOLSystem shipVTOLSystem;
-    public ShipVTOLBaseState (Animator animator, Dictionary<string, List<ThrusterEffectInfo>> vtolThrusters, StateManager vtolStateManager, ShipVTOLSystem shipVTOLSystem)
+    public ShipVTOLBaseState (Animator animator, Dictionary<string, List<ThrusterEffectInfo>> vtolThrusters, StateManager vtolStateManager)
     {
         this.animator = animator;
         this.vtolThrusters = vtolThrusters;
         this.vtolStateManager = vtolStateManager;
-        this.shipVTOLSystem = shipVTOLSystem;
     }
     public abstract void EnterState();
-    public abstract void UpdateState();
+    public abstract void UpdateState(Vector3 moveActionValue, float localV, Transform trans);
     protected void ToggleThrusterAnims()
     {
         animator.ResetTrigger("ToggleVTOL");

@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ShipControlSystemManager : MonoBehaviour
+public class ShipControlSystem : MonoBehaviour
 {
     // private ShipManager shipManager;
     private ShipControlBaseType activeShipControl;

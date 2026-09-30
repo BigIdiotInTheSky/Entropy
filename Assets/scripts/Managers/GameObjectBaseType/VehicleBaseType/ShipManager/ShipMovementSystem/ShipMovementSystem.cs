@@ -61,6 +61,6 @@ public class ShipMovementSystem : MonoBehaviour
     
     void FixedUpdate()
     {
-        sMSStateManager.CurrentState.UpdateState(transform, shipManager.ShipControlSystemManager.CurrentControlType.MoveOutput, shipManager.ShipControlSystemManager.CurrentControlType.RotateOutput);
+        sMSStateManager.CurrentState.UpdateState();
     }
 }
