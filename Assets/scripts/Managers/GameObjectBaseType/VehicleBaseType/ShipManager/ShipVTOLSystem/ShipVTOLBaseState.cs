@@ -11,6 +11,7 @@ public abstract class ShipVTOLBaseState
     protected float moveActionValue;
     protected float localv;
     protected Vector3 trans;
+    protected bool VTOLDown;
 
     public float MoveActionValue { get { return moveActionValue; } }
     public float LocalV { get { return localv; } } 

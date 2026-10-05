@@ -22,6 +22,7 @@ public class ShipVTOLSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Debug.Log(shipVTOLSystemStateManager.CurrentShipVTOLState);
         Vector3 localV = shipManager.Trans.InverseTransformDirection(shipManager.Rb.linearVelocity);
         shipVTOLSystemStateManager.CurrentShipVTOLState.UpdateState(localV);
     }

@@ -7,8 +7,6 @@ public class ShipVTOLDownState : ShipVTOLBaseState
     public override void EnterState() 
     {
         ToggleThrusterAnims();
-        vtolStateManager.PositiveAccelerationState.Dampen = true;
-        vtolStateManager.NegativeAccelerationState.Dampen = true;
         vtolStateManager.PositiveAccelerationState.MoveThrusters = vtolThrusters["downThrusters"];
         vtolStateManager.NegativeAccelerationState.MoveThrusters = vtolThrusters["upThrusters"];
     }

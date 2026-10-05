@@ -12,7 +12,7 @@ public class ShipVTOLSystemStateManager
     {
         shipVTOLDownState = new ShipVTOLDownState(shipVTOLSystem.ShipManager.ShipMovementSystem.VTOLThrusters["downPos"], shipVTOLSystem);
         shipVTOLUpState = new ShipVTOLUpState(shipVTOLSystem.ShipManager.ShipMovementSystem.VTOLThrusters["upPos"], shipVTOLSystem);
-        currentShipVTOLState = shipVTOLUpState;
+        currentShipVTOLState = shipVTOLDownState;
     }
 
     public void ToggleVTOLUpDown()

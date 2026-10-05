@@ -27,7 +27,7 @@ public class TestRuntimeUI : MonoBehaviour
         //    obj = DropContainer.score + " / " + DropContainer.goal+" CONTAINERS";
         //}
         Vector3 localV = transform.InverseTransformDirection(rb.linearVelocity);
-        m_TextComponent.text = "RVEL:"+Mathf.Round(localV.magnitude)+"\nXVEL:" + Mathf.Round(localV.x)+"\nYVEL:"+Mathf.Round(localV.y)+"\nZVEL:" + Mathf.Round(localV.z);
+        m_TextComponent.text = "RVEL:"+Mathf.Round(localV.magnitude)/* +"\nXVEL:" + Mathf.Round(localV.x)+"\nYVEL:"+Mathf.Round(localV.y)+"\nZVEL:" + Mathf.Round(localV.z) */;
 
     }
 
