@@ -9,6 +9,7 @@ public class ShipVTOLUpState : ShipVTOLBaseState
         ToggleThrusterAnims();
         vtolStateManager.PositiveAccelerationState.MoveThrusters = vtolThrusters["foreThrusters"];
         vtolStateManager.NegativeAccelerationState.MoveThrusters = vtolThrusters["aftThrusters"];
+        ToggleDampen(false);
     }
     public override void UpdateState(Vector3 localV)
     {

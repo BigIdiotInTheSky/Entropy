@@ -20,6 +20,7 @@ public class StateManager
         negativeAccelerationState = new NegativeAccelerationState(dampen, this, negativeAccelerationForce, rb, negativeThrusters, smsOnState);
         CurrentState = idleState;
     }
+
     // public void UpdateState(float moveActionValue, float localV, Vector3 trans)
     // {
     //     currentState.UpdateState(moveActionValue, localV, trans);

@@ -30,4 +30,11 @@ public abstract class ShipVTOLBaseState
         animator.ResetTrigger("ToggleVTOL");
         animator.SetTrigger("ToggleVTOL");
     }
+
+    protected void ToggleDampen(bool doDampen)
+    {
+        vtolStateManager.PositiveAccelerationState.Dampen = doDampen;
+        vtolStateManager.NegativeAccelerationState.Dampen = doDampen;
+        vtolStateManager.IdleState.Dampen = doDampen;
+    }
 }
