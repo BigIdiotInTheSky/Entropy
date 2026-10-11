@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEditor;
 public class ShipLandingSystem : MonoBehaviour
 {
     private ShipManager shipManager;
@@ -15,6 +15,29 @@ public class ShipLandingSystem : MonoBehaviour
         animator = GetComponent<Animator>();
         shipManager = GetComponent<ShipManager>();
         shipLandingSystemStateManager = new ShipLandingSystemStateManager(this);
+        SetPose();
+    }
+    private void SetPose()
+    {
+        AnimationClip[] animationClips = AnimationUtility.GetAnimationClips(gameObject);
+        AnimationClip gearDownClip = GetClip(animationClips, "GearDown");
+        AnimationClip idleClip = GetClip(animationClips, "Scene");
+        AnimationUtility.SetAdditiveReferencePose(idleClip, gearDownClip, 0);
+
+        AnimationClip gearUpClip = GetClip(animationClips, "GearUp");
+        AnimationUtility.SetAdditiveReferencePose(gearUpClip, gearDownClip, 0);
+
+        AnimationUtility.SetAdditiveReferencePose(gearDownClip, gearDownClip, 0);
     }
 
+    private AnimationClip GetClip(AnimationClip[] animationClips, string name)
+    {
+        for (int i = 0; i < animationClips.Length; i++)
+        {
+            AnimationClip currentClip = animationClips[i];
+            if (currentClip.name.Contains(name)) { return currentClip; }
+            Debug.Log(currentClip.name+" "+name);             
+        }
+        throw new System.Exception("Not found");
+    }
 }
