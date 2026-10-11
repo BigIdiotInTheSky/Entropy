@@ -1,0 +1,165 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ShipVTOLAvatarMask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000u
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: antenna
+    m_Weight: 1
+  - m_Path: antenna.1
+    m_Weight: 1
+  - m_Path: antenna.2
+    m_Weight: 1
+  - m_Path: antenna.3
+    m_Weight: 1
+  - m_Path: Armature
+    m_Weight: 1
+  - m_Path: Armature/Root
+    m_Weight: 1
+  - m_Path: Armature/Root/FrontGearCover
+    m_Weight: 1
+  - m_Path: Armature/Root/FrontGearCover/FrontGearCover_end
+    m_Weight: 1
+  - m_Path: Armature/Root/FrontLandingGearStrut.L
+    m_Weight: 1
+  - m_Path: Armature/Root/FrontLandingGearStrut.L/FrontLandingGear
+    m_Weight: 1
+  - m_Path: Armature/Root/FrontLandingGearStrut.L/FrontLandingGear/FrontLandingGear
+    m_Weight: 1
+  - m_Path: Armature/Root/FrontLandingGearStrut.L/FrontLandingGear/FrontLandingGear_end
+    m_Weight: 1
+  - m_Path: Armature/Root/FrontLandingGearStrut.R
+    m_Weight: 1
+  - m_Path: Armature/Root/FrontLandingGearStrut.R/FrontLandingGearStrut.R_end
+    m_Weight: 1
+  - m_Path: Armature/Root/Gear.L
+    m_Weight: 1
+  - m_Path: Armature/Root/Gear.L/Gear.L_end
+    m_Weight: 1
+  - m_Path: Armature/Root/Gear.R
+    m_Weight: 1
+  - m_Path: Armature/Root/Gear.R/Gear.R_end
+    m_Weight: 1
+  - m_Path: Armature/Root/VTOL.L
+    m_Weight: 1
+  - m_Path: Armature/Root/VTOL.L/VTOL.L_end
+    m_Weight: 1
+  - m_Path: Armature/Root/VTOL.R
+    m_Weight: 1
+  - m_Path: Armature/Root/VTOL.R/VTOL.R_end
+    m_Weight: 1
+  - m_Path: Armature/Root/VTOL2.L
+    m_Weight: 1
+  - m_Path: Armature/Root/VTOL2.L/VTOL2.L_end
+    m_Weight: 1
+  - m_Path: Armature/Root/VTOL2.R
+    m_Weight: 1
+  - m_Path: Armature/Root/VTOL2.R/VTOL2.R_end
+    m_Weight: 1
+  - m_Path: ChinTurret
+    m_Weight: 1
+  - m_Path: Cube.006
+    m_Weight: 1
+  - m_Path: Cube.009
+    m_Weight: 1
+  - m_Path: Docking Port
+    m_Weight: 1
+  - m_Path: Fore VTOL
+    m_Weight: 1
+  - m_Path: Fore VTOL.001
+    m_Weight: 1
+  - m_Path: Fore VTOL.002
+    m_Weight: 1
+  - m_Path: Fore VTOL.003
+    m_Weight: 1
+  - m_Path: FrontGearCover
+    m_Weight: 1
+  - m_Path: Gear
+    m_Weight: 1
+  - m_Path: Hull
+    m_Weight: 1
+  - m_Path: Icosphere
+    m_Weight: 1
+  - m_Path: mnver thruster
+    m_Weight: 1
+  - m_Path: mnver thruster/Cube
+    m_Weight: 1
+  - m_Path: mnver thruster.001
+    m_Weight: 1
+  - m_Path: mnver thruster.001/Cube.001
+    m_Weight: 1
+  - m_Path: mnver thruster.002
+    m_Weight: 1
+  - m_Path: mnver thruster.002/Cube.003
+    m_Weight: 1
+  - m_Path: mnver thruster.003
+    m_Weight: 1
+  - m_Path: mnver thruster.003/Cube.004
+    m_Weight: 1
+  - m_Path: mnver thruster.004
+    m_Weight: 1
+  - m_Path: mnver thruster.004/Cube.002
+    m_Weight: 1
+  - m_Path: mnver thruster.005
+    m_Weight: 1
+  - m_Path: mnver thruster.005/Cube.005
+    m_Weight: 1
+  - m_Path: mnver thruster.006
+    m_Weight: 1
+  - m_Path: mnver thruster.007
+    m_Weight: 1
+  - m_Path: mnver thruster.008
+    m_Weight: 1
+  - m_Path: mnver thruster.009
+    m_Weight: 1
+  - m_Path: mnver thruster.010
+    m_Weight: 1
+  - m_Path: mnver thruster.011
+    m_Weight: 1
+  - m_Path: Thruster
+    m_Weight: 1
+  - m_Path: Thruster.001
+    m_Weight: 1
+  - m_Path: Thruster.002
+    m_Weight: 1
+  - m_Path: Thruster.003
+    m_Weight: 1
+  - m_Path: vtol thruster.001
+    m_Weight: 1
+  - m_Path: vtol thruster.002
+    m_Weight: 1
+  - m_Path: vtol thruster.003
+    m_Weight: 1
+  - m_Path: vtol thruster.004
+    m_Weight: 1
+  - m_Path: vtol thruster.005
+    m_Weight: 1
+  - m_Path: vtol thruster.006
+    m_Weight: 1
+  - m_Path: vtol thruster.007
+    m_Weight: 1
+  - m_Path: vtol thruster.008
+    m_Weight: 1
+  - m_Path: vtol thruster.009
+    m_Weight: 1
+  - m_Path: vtol thruster.010
+    m_Weight: 1
+  - m_Path: vtol thruster.011
+    m_Weight: 1
+  - m_Path: vtol thruster.012
+    m_Weight: 1
+  - m_Path: vtol thruster.013
+    m_Weight: 1
+  - m_Path: vtol thruster.014
+    m_Weight: 1
+  - m_Path: vtol thruster.015
+    m_Weight: 1
+  - m_Path: vtol thruster.016
+    m_Weight: 1

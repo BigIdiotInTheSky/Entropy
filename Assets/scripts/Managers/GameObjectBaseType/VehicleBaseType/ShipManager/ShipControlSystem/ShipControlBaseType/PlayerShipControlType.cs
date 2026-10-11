@@ -50,6 +50,7 @@ public class PlayerShipControlType : ShipControlBaseType
     }
     void ToggleGearPerformed(InputAction.CallbackContext context)
     {
+        Debug.Log(shipControlSystem.ShipManager.ShipLandingSystem);
         shipControlSystem.ShipManager.ShipLandingSystem.ShipLandingSystemStateManager.ToggleGearUpDown();
     }
 }

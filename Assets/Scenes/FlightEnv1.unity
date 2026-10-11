@@ -52436,6 +52436,7 @@ MonoBehaviour:
   rotate: {fileID: 3795151530064314639, guid: 1ecf2ea1d3c39174883ffeab3d1a7e25, type: 3}
   toggleThrust: {fileID: 868946357684406262, guid: 1ecf2ea1d3c39174883ffeab3d1a7e25, type: 3}
   toggleVTOL: {fileID: 3048717162557125863, guid: 1ecf2ea1d3c39174883ffeab3d1a7e25, type: 3}
+  toggleGear: {fileID: 320970676759021847, guid: 1ecf2ea1d3c39174883ffeab3d1a7e25, type: 3}
 --- !u!114 &1433090486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52460,6 +52461,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 400b03e78f8f84ff9b3330041bba58c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShipVTOLSystem
+--- !u!114 &1433090494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433090472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec454edb7deae943c9e95a0218d78d52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShipLandingSystem
 --- !u!1 &1461666704 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a1f24d25337e1fc4f9f8fcd5a70f3b4c, type: 3}
@@ -76146,6 +76159,10 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5880107695924848766, guid: 2cd9e7c2a7b23864399dbe8de568ae6f, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6082150857255845390, guid: 2cd9e7c2a7b23864399dbe8de568ae6f, type: 3}
       propertyPath: rb
       value: 
@@ -76361,6 +76378,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4524893567896420965, guid: 2cd9e7c2a7b23864399dbe8de568ae6f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1433090490}
+    - targetCorrespondingSourceObject: {fileID: 4524893567896420965, guid: 2cd9e7c2a7b23864399dbe8de568ae6f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1433090494}
   m_SourcePrefab: {fileID: 100100000, guid: 2cd9e7c2a7b23864399dbe8de568ae6f, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
