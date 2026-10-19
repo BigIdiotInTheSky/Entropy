@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ShipLandingSystemUnlockedSubstate : ShipLandingSystemBaseSubstate
 {
-    public ShipLandingSystemUnlockedSubstate(ShipLandingSystemDownState shipLandingSystemDownState, Rigidbody rigidbody, GameObject gameObject) : base (shipLandingSystemDownState, rigidbody, gameObject) {}
+    public ShipLandingSystemUnlockedSubstate(ShipLandingSystemDownState shipLandingSystemDownState) : base (shipLandingSystemDownState) {}
     public override void EnterState()
     {
         Debug.Log("Gear unlocked");
@@ -10,7 +10,9 @@ public class ShipLandingSystemUnlockedSubstate : ShipLandingSystemBaseSubstate
     }
     private void Unlock()
     {
-        rigidbody.WakeUp();
-        gameObject.transform.SetParent(null);
+        shipLandingSystemDownState.ShipLandingSystem.ShipManager.Rb.freezeRotation = false;
+        shipLandingSystemDownState.ShipLandingSystem.ShipManager.Rb.maxLinearVelocity = shipLandingSystemDownState.ShipLandingSystem.ShipManager.ShipProfile.MaxLinearVelocity / 10;
+        shipLandingSystemDownState.ShipLandingSystem.PositionConstraint.locked = false;
+        shipLandingSystemDownState.ShipLandingSystem.transform.SetParent(null);
     }
 }

@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class ShipLandingSystemDownState : ShipLandingSystemBaseState
 {
-    ShipLandingSystemBaseSubstate currentShipLandingSystemSubstate;
-    ShipLandingSystemLockedSubstate shipLandingSystemLockedSubstate;
-    ShipLandingSystemUnlockedSubstate shipLandingSystemUnlockedSubstate;
+    private ShipLandingSystemBaseSubstate currentShipLandingSystemSubstate;
+    private ShipLandingSystemLockedSubstate shipLandingSystemLockedSubstate;
+    private ShipLandingSystemUnlockedSubstate shipLandingSystemUnlockedSubstate;
 
     public ShipLandingSystemBaseSubstate CurrentShipLandingSystemSubstate { get { return currentShipLandingSystemSubstate; } set { if (value != currentShipLandingSystemSubstate) { 
         currentShipLandingSystemSubstate = value; currentShipLandingSystemSubstate.EnterState(); } } }
@@ -12,12 +12,18 @@ public class ShipLandingSystemDownState : ShipLandingSystemBaseState
     public ShipLandingSystemUnlockedSubstate ShipLandingSystemUnlockedSubstate { get { return shipLandingSystemUnlockedSubstate; } }
     public ShipLandingSystemDownState (ShipLandingSystem shipLandingSystem) : base (shipLandingSystem)
     {
-        shipLandingSystemLockedSubstate = new ShipLandingSystemLockedSubstate(this, shipLandingSystem.ShipManager.Rb, shipLandingSystem.ShipManager.gameObject);
-        shipLandingSystemUnlockedSubstate = new ShipLandingSystemUnlockedSubstate(this, shipLandingSystem.ShipManager.Rb, shipLandingSystem.ShipManager.gameObject);
+        shipLandingSystemLockedSubstate = new ShipLandingSystemLockedSubstate(this);
+        shipLandingSystemUnlockedSubstate = new ShipLandingSystemUnlockedSubstate(this);
         currentShipLandingSystemSubstate = shipLandingSystemUnlockedSubstate;
     }
     public override void EnterState()
     {
         ToggleGearAnims();
+        shipLandingSystem.ShipManager.Rb.maxLinearVelocity = shipLandingSystem.ShipManager.ShipProfile.MaxLinearVelocity / 10;
+
+    }
+    public override void InitState()
+    {
+        shipLandingSystem.ShipManager.Rb.maxLinearVelocity = shipLandingSystem.ShipManager.ShipProfile.MaxLinearVelocity / 10;
     }
 }

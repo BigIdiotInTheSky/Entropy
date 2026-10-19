@@ -54,7 +54,9 @@ public class ShipMovementSystem : MonoBehaviour
     void Awake()
     {
         InitThrusters();
-        shipManager = GetComponent<ShipManager>();  
+        shipManager = GetComponent<ShipManager>();
+        shipManager.Rb.maxAngularVelocity = shipManager.ShipProfile.MaxAngularVelocity;
+        shipManager.Rb.maxLinearVelocity = shipManager.ShipProfile.MaxLinearVelocity;
         sMSStateManager = new SMSStateManager(this);
     }
     

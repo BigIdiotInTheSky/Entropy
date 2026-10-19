@@ -12,6 +12,7 @@ public class ShipLandingSystemStateManager
         shipLandingSystemDownState = new ShipLandingSystemDownState(shipLandingSystem);
         shipLandingSystemUpState = new ShipLandingSystemUpState(shipLandingSystem);
         currentShipLandingState = shipLandingSystemDownState;
+        shipLandingSystemDownState.InitState();
         this.shipLandingSystem = shipLandingSystem;
     }
 

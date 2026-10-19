@@ -11,7 +11,7 @@ public abstract class ShipLandingSystemBaseState
     }
 
     public abstract void EnterState();
-
+    public abstract void InitState();
     protected void ToggleGearAnims()
     {
         shipLandingSystem.Animator.ResetTrigger("ToggleGear");
