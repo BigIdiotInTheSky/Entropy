@@ -50,7 +50,7 @@ public class ShipLandingSystem : MonoBehaviour
     }
     void OnTriggerStay(Collider collider)
     {
-        Debug.Log(Quaternion.Angle(collider.transform.rotation, gameObject.transform.rotation));
+
         if ((Quaternion.Angle(collider.transform.rotation, gameObject.transform.rotation) < 120 || Quaternion.Angle(collider.transform.rotation, gameObject.transform.rotation) > 60) && 
             collider.gameObject.tag == "pad marker")
         {
