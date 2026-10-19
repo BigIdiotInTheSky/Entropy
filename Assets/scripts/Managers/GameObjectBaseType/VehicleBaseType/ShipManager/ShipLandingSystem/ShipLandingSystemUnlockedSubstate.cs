@@ -11,6 +11,6 @@ public class ShipLandingSystemUnlockedSubstate : ShipLandingSystemBaseSubstate
     private void Unlock()
     {
         rigidbody.WakeUp();
-        gameObject.transform.SetParent(shipLandingSystemDownState.ShipLandingSystem.Collider.transform);
+        gameObject.transform.SetParent(null);
     }
 }

@@ -48,14 +48,14 @@ public class ShipLandingSystem : MonoBehaviour
     void OnTriggerStay(Collider collider)
     {
 
-        if ((Quaternion.Angle(collider.transform.rotation, gameObject.transform.rotation) > 165 || Quaternion.Angle(collider.transform.rotation, gameObject.transform.rotation) < 15) && 
+        if ((Quaternion.Angle(collider.transform.rotation, gameObject.transform.rotation) < 120 || Quaternion.Angle(collider.transform.rotation, gameObject.transform.rotation) > 60) && 
             collider.gameObject.tag == "pad marker")
         {
             padContact = true;
             this.collider = collider;
             Debug.Log("(L) to lock");
         }
-        else { padContact = false; Debug.Log(Quaternion.Angle(collider.transform.rotation, gameObject.transform.rotation)); }
+        else { padContact = false; Debug.Log(Quaternion.Angle(collider.transform.rotation, gameObject.transform.rotation)); Debug.Log(collider.name); }
     }
 }
             // Debug.Log(currentClip.name+" "+name);  

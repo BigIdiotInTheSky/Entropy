@@ -10,6 +10,7 @@ public abstract class ShipLandingSystemBaseSubstate
     {
         this.shipLandingSystemDownState = shipLandingSystemDownState;
         this.gameObject = gameObject;
+        this.rigidbody = rigidbody;
     }
     public abstract void EnterState();
 }
