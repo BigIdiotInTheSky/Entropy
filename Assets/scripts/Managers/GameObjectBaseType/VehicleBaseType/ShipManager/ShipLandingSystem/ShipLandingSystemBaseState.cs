@@ -4,6 +4,7 @@ public abstract class ShipLandingSystemBaseState
 {
     protected ShipLandingSystem shipLandingSystem;
 
+    public ShipLandingSystem ShipLandingSystem { get { return shipLandingSystem; } }
     public ShipLandingSystemBaseState (ShipLandingSystem shipLandingSystem)
     {
         this.shipLandingSystem = shipLandingSystem;

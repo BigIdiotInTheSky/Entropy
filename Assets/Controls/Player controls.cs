@@ -323,6 +323,16 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""initialStateCheck"": false,
                     ""priority"": 0
+                },
+                {
+                    ""name"": ""lock gear"",
+                    ""type"": ""Button"",
+                    ""id"": ""7db291f7-3be8-4445-b687-bce1b61a5758"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
                 }
             ],
             ""bindings"": [
@@ -380,6 +390,17 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
                     ""action"": ""toggle Gear"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""33bcf193-adac-4d94-bdf6-43317a9bfac8"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""lock gear"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -397,6 +418,7 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
         m_utility_togglethrust = m_utility.FindAction("toggle thrust", throwIfNotFound: true);
         m_utility_toggleVTOL = m_utility.FindAction("toggle VTOL", throwIfNotFound: true);
         m_utility_toggleGear = m_utility.FindAction("toggle Gear", throwIfNotFound: true);
+        m_utility_lockgear = m_utility.FindAction("lock gear", throwIfNotFound: true);
     }
 
     ~@Playercontrols()
@@ -590,6 +612,7 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
     private readonly InputAction m_utility_togglethrust;
     private readonly InputAction m_utility_toggleVTOL;
     private readonly InputAction m_utility_toggleGear;
+    private readonly InputAction m_utility_lockgear;
     /// <summary>
     /// Provides access to input actions defined in input action map "utility".
     /// </summary>
@@ -621,6 +644,10 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "utility/toggleGear".
         /// </summary>
         public InputAction @toggleGear => m_Wrapper.m_utility_toggleGear;
+        /// <summary>
+        /// Provides access to the underlying input action "utility/lockgear".
+        /// </summary>
+        public InputAction @lockgear => m_Wrapper.m_utility_lockgear;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -662,6 +689,9 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
             @toggleGear.started += instance.OnToggleGear;
             @toggleGear.performed += instance.OnToggleGear;
             @toggleGear.canceled += instance.OnToggleGear;
+            @lockgear.started += instance.OnLockgear;
+            @lockgear.performed += instance.OnLockgear;
+            @lockgear.canceled += instance.OnLockgear;
         }
 
         /// <summary>
@@ -688,6 +718,9 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
             @toggleGear.started -= instance.OnToggleGear;
             @toggleGear.performed -= instance.OnToggleGear;
             @toggleGear.canceled -= instance.OnToggleGear;
+            @lockgear.started -= instance.OnLockgear;
+            @lockgear.performed -= instance.OnLockgear;
+            @lockgear.canceled -= instance.OnLockgear;
         }
 
         /// <summary>
@@ -785,5 +818,12 @@ public partial class @Playercontrols: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnToggleGear(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "lock gear" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLockgear(InputAction.CallbackContext context);
     }
 }

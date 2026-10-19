@@ -2,5 +2,14 @@ using UnityEngine;
 
 public abstract class ShipLandingSystemBaseSubstate
 {
-     public abstract void EnterState();
+    protected ShipLandingSystemDownState shipLandingSystemDownState;
+    protected Rigidbody rigidbody;
+    protected GameObject gameObject;
+
+    public ShipLandingSystemBaseSubstate (ShipLandingSystemDownState shipLandingSystemDownState,  Rigidbody rigidbody, GameObject gameObject)
+    {
+        this.shipLandingSystemDownState = shipLandingSystemDownState;
+        this.gameObject = gameObject;
+    }
+    public abstract void EnterState();
 }

@@ -2,20 +2,22 @@ using UnityEngine;
 using UnityEditor;
 public class ShipLandingSystem : MonoBehaviour
 {
-    private ShipManager shipManager;
     private Animator animator;
     private ShipLandingSystemStateManager shipLandingSystemStateManager;
-    private Collider gearCollider;
+    private bool padContact;
+    private ShipManager shipManager;
+    private Collider collider;
 
-    public ShipManager ShipManager { get { return shipManager; } }
     public Animator Animator { get { return animator; } }
+    public bool PadContact { get { return padContact; } }
     public ShipLandingSystemStateManager ShipLandingSystemStateManager { get { return shipLandingSystemStateManager; } }
+    public ShipManager ShipManager { get { return shipManager; } }
+    public Collider Collider { get { return collider; } }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        animator = GetComponent<Animator>();
         shipManager = GetComponent<ShipManager>();
-        gearCollider = GetComponent<BoxCollider>();
+        animator = GetComponent<Animator>();
         shipLandingSystemStateManager = new ShipLandingSystemStateManager(this);
         SetPose();
     }
@@ -41,6 +43,19 @@ public class ShipLandingSystem : MonoBehaviour
             // Debug.Log(currentClip.name+" "+name);             
         }
         throw new System.Exception("Not found");
+    }
+
+    void OnTriggerStay(Collider collider)
+    {
+
+        if ((Quaternion.Angle(collider.transform.rotation, gameObject.transform.rotation) > 165 || Quaternion.Angle(collider.transform.rotation, gameObject.transform.rotation) < 15) && 
+            collider.gameObject.tag == "pad marker")
+        {
+            padContact = true;
+            this.collider = collider;
+            Debug.Log("(L) to lock");
+        }
+        else { padContact = false; Debug.Log(Quaternion.Angle(collider.transform.rotation, gameObject.transform.rotation)); }
     }
 }
             // Debug.Log(currentClip.name+" "+name);  

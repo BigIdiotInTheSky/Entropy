@@ -10,6 +10,7 @@ public class PlayerShipControlType : ShipControlBaseType
     [SerializeField] private InputActionReference toggleThrust;
     [SerializeField] private InputActionReference toggleVTOL;
     [SerializeField] private InputActionReference toggleGear;
+    [SerializeField] private InputActionReference toggleGearLock;
     private ShipControlSystem shipControlSystem;
     void OnEnable()
     {
@@ -18,6 +19,7 @@ public class PlayerShipControlType : ShipControlBaseType
         toggleThrust.action.Enable();
         toggleVTOL.action.Enable();
         toggleGear.action.Enable();
+        toggleGearLock.action.Enable();
     }
     void OnDisable()
     {
@@ -26,13 +28,15 @@ public class PlayerShipControlType : ShipControlBaseType
         toggleThrust.action.Disable();
         toggleVTOL.action.Disable();
         toggleGear.action.Disable();
+        toggleGearLock.action.Disable();
     }
     void Start()
     {
         toggleThrust.action.performed += ToggleThrustPerformed;
         toggleVTOL.action.performed += ToggleVTOLPerformed;
         toggleGear.action.performed += ToggleGearPerformed;
-        
+        toggleGearLock.action.performed += ToggleGearLockPerformed;
+
         shipControlSystem = GetComponent<ShipControlSystem>();
     }
     void Update()
@@ -50,7 +54,11 @@ public class PlayerShipControlType : ShipControlBaseType
     }
     void ToggleGearPerformed(InputAction.CallbackContext context)
     {
-        Debug.Log(shipControlSystem.ShipManager.ShipLandingSystem);
+        // Debug.Log(shipControlSystem.ShipManager.ShipLandingSystem);
         shipControlSystem.ShipManager.ShipLandingSystem.ShipLandingSystemStateManager.ToggleGearUpDown();
+    }
+    void ToggleGearLockPerformed(InputAction.CallbackContext context)
+    {
+        shipControlSystem.ShipManager.ShipLandingSystem.ShipLandingSystemStateManager.ToggleGearLock();
     }
 }
