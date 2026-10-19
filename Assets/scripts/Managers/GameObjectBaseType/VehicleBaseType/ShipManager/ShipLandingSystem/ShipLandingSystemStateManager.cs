@@ -15,7 +15,13 @@ public class ShipLandingSystemStateManager
 
     public void ToggleGearUpDown()
     {
-        if (currentShipLandingState == shipLandingSystemDownState) { currentShipLandingState = shipLandingSystemUpState; }
+        if (currentShipLandingState == shipLandingSystemDownState)
+            if (shipLandingSystemDownState.CurrentShipLandingSystemSubstate == shipLandingSystemDownState.ShipLandingSystemLockedSubstate)
+            {
+                Debug.Log("Unlock to raise gear!");
+            }
+            else { currentShipLandingState = shipLandingSystemUpState; }
+
         else { currentShipLandingState = shipLandingSystemDownState; }
         currentShipLandingState.EnterState();
     }

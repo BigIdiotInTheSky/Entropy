@@ -24,11 +24,11 @@ AvatarMask:
   - m_Path: Armature/Root
     m_Weight: 1
   - m_Path: Armature/Root/FrontGearCover
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Root/FrontGearCover/FrontGearCover_end
     m_Weight: 1
   - m_Path: Armature/Root/FrontLandingGearStrut.L
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Root/FrontLandingGearStrut.L/FrontLandingGear
     m_Weight: 1
   - m_Path: Armature/Root/FrontLandingGearStrut.L/FrontLandingGear/FrontLandingGear
@@ -36,15 +36,15 @@ AvatarMask:
   - m_Path: Armature/Root/FrontLandingGearStrut.L/FrontLandingGear/FrontLandingGear_end
     m_Weight: 1
   - m_Path: Armature/Root/FrontLandingGearStrut.R
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Root/FrontLandingGearStrut.R/FrontLandingGearStrut.R_end
     m_Weight: 1
   - m_Path: Armature/Root/Gear.L
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Root/Gear.L/Gear.L_end
     m_Weight: 1
   - m_Path: Armature/Root/Gear.R
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Root/Gear.R/Gear.R_end
     m_Weight: 1
   - m_Path: Armature/Root/VTOL.L
