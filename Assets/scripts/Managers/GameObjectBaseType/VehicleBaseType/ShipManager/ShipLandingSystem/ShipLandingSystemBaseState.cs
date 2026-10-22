@@ -1,3 +1,4 @@
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public abstract class ShipLandingSystemBaseState
@@ -16,5 +17,12 @@ public abstract class ShipLandingSystemBaseState
     {
         shipLandingSystem.Animator.ResetTrigger("ToggleGear");
         shipLandingSystem.Animator.SetTrigger("ToggleGear");
+    }
+    protected void ToggleGearCollision(bool doCollide)
+    {
+        for (int i = 0; i < shipLandingSystem.GearColliders.Count; i++)
+        {
+            shipLandingSystem.GearColliders[i].enabled = doCollide;
+        }
     }
 }

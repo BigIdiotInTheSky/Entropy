@@ -1,21 +1,25 @@
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.Animations;
+using System.Collections.Generic;
 public class ShipLandingSystem : MonoBehaviour
 {
+    [SerializeField] private List<BoxCollider> gearColliders;
+
     private Animator animator;
     private ShipLandingSystemStateManager shipLandingSystemStateManager;
     private bool padContact;
     private ShipManager shipManager;
-    private Collider collider;
+    private Collider padCollider;
     private PositionConstraint positionConstraint;
 
     public Animator Animator { get { return animator; } }
     public bool PadContact { get { return padContact; } }
     public ShipLandingSystemStateManager ShipLandingSystemStateManager { get { return shipLandingSystemStateManager; } }
     public ShipManager ShipManager { get { return shipManager; } }
-    public Collider Collider { get { return collider; } }
+    public Collider PadCollider { get { return padCollider; } }
     public PositionConstraint PositionConstraint { get { return positionConstraint; } }
+    public List<BoxCollider> GearColliders { get { return gearColliders; } }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -55,7 +59,7 @@ public class ShipLandingSystem : MonoBehaviour
             collider.gameObject.tag == "pad marker")
         {
             padContact = true;
-            this.collider = collider;
+            padCollider = collider;
             Debug.Log("(L) to lock");
         }
         else { padContact = false; }
