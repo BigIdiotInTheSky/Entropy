@@ -12,7 +12,7 @@ public class ShipLandingSystemUnlockedSubstate : ShipLandingSystemBaseSubstate
     {
         shipLandingSystemDownState.ShipLandingSystem.ShipManager.Rb.freezeRotation = false;
         shipLandingSystemDownState.ShipLandingSystem.ShipManager.Rb.maxLinearVelocity = shipLandingSystemDownState.ShipLandingSystem.ShipManager.ShipProfile.MaxLinearVelocity;
-        shipLandingSystemDownState.ShipLandingSystem.PositionConstraint.locked = false;
+        // shipLandingSystemDownState.ShipLandingSystem.PositionConstraint.locked = false;
         shipLandingSystemDownState.ShipLandingSystem.transform.SetParent(null);
     }
 }

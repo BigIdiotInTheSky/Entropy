@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.Animations;
 using System.Collections.Generic;
+using System;
 public class ShipLandingSystem : MonoBehaviour
 {
     [SerializeField] private List<BoxCollider> gearColliders;
@@ -11,21 +12,21 @@ public class ShipLandingSystem : MonoBehaviour
     private bool padContact;
     private ShipManager shipManager;
     private Collider padCollider;
-    private PositionConstraint positionConstraint;
+    // private PositionConstraint positionConstraint;
 
     public Animator Animator { get { return animator; } }
     public bool PadContact { get { return padContact; } }
     public ShipLandingSystemStateManager ShipLandingSystemStateManager { get { return shipLandingSystemStateManager; } }
     public ShipManager ShipManager { get { return shipManager; } }
     public Collider PadCollider { get { return padCollider; } }
-    public PositionConstraint PositionConstraint { get { return positionConstraint; } }
+    // public PositionConstraint PositionConstraint { get { return positionConstraint; } }
     public List<BoxCollider> GearColliders { get { return gearColliders; } }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         shipManager = GetComponent<ShipManager>();
         animator = GetComponent<Animator>();
-        positionConstraint = GetComponent<PositionConstraint>();
+        // positionConstraint = GetComponent<PositionConstraint>();
         shipLandingSystemStateManager = new ShipLandingSystemStateManager(this);
         SetPose();
     }
@@ -50,19 +51,21 @@ public class ShipLandingSystem : MonoBehaviour
             if (currentClip.name.Contains(name)) { return currentClip; }
             // Debug.Log(currentClip.name+" "+name);             
         }
-        throw new System.Exception("Not found");
+        throw new Exception("Not found");
     }
     void OnTriggerStay(Collider collider)
     {
-
-        if ((Quaternion.Angle(collider.transform.rotation, gameObject.transform.rotation) < 120 || Quaternion.Angle(collider.transform.rotation, gameObject.transform.rotation) > 60) && 
-            collider.gameObject.tag == "pad marker")
+        if (collider.gameObject.tag == "pad marker")
         {
-            padContact = true;
-            padCollider = collider;
-            Debug.Log("(L) to lock");
+            if ((Quaternion.Angle(collider.transform.rotation, gameObject.transform.rotation) < 120 || Quaternion.Angle(collider.transform.rotation, gameObject.transform.rotation) > 60) && 
+                Math.Round(ShipManager.Rb.linearVelocity.magnitude, 1) == 0)
+            {
+                padContact = true;
+                padCollider = collider;
+                Debug.Log("(L) to lock");
+            }
+            else { padContact = false; }
         }
-        else { padContact = false; }
     }
 }
             // Debug.Log(currentClip.name+" "+name);  p
