@@ -9,10 +9,12 @@ public class SMSStateManager
     public SMSBaseState CurrentState { get { return currentState; } }
     public OnState OnState { get { return onState; } }
     public OffState OffState{ get { return offState; } }
+    public ShipMovementSystem shipMovementSystem;
     public SMSStateManager(ShipMovementSystem shipMovementSystem)
     {
         offState = new OffState(this, shipMovementSystem.MoveThrusters, shipMovementSystem.RotateThrusters, shipMovementSystem.VTOLThrusters["downPos"]);
         onState = new OnState(this,  shipMovementSystem.MoveThrusters, shipMovementSystem.RotateThrusters, shipMovementSystem.VTOLThrusters["downPos"], shipMovementSystem.ShipManager);
+        this.shipMovementSystem = shipMovementSystem;
         currentState = offState;
         currentState.EnterState();
     }
@@ -28,7 +30,12 @@ public class SMSStateManager
     }
     public void ToggleOnOff()
     {
-        if (currentState == onState) { MoveOff(); }
-        else { MoveOn(); }
+        if (shipMovementSystem.ShipManager.ShipLandingSystem.ShipLandingSystemStateManager.ShipLandingSystemDownState.CurrentShipLandingSystemSubstate == 
+            shipMovementSystem.ShipManager.ShipLandingSystem.ShipLandingSystemStateManager.ShipLandingSystemDownState.ShipLandingSystemUnlockedSubstate)
+        {
+            if (currentState == onState) { MoveOff(); }
+            else { MoveOn(); }
+        }
+        else { Debug.Log("Unlock to toogle thrusters!"); }
     }
 }

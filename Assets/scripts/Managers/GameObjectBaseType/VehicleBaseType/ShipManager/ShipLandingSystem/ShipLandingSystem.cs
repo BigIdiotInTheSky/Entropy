@@ -12,21 +12,18 @@ public class ShipLandingSystem : MonoBehaviour
     private bool padContact;
     private ShipManager shipManager;
     private Collider padCollider;
-    // private PositionConstraint positionConstraint;
 
     public Animator Animator { get { return animator; } }
     public bool PadContact { get { return padContact; } }
     public ShipLandingSystemStateManager ShipLandingSystemStateManager { get { return shipLandingSystemStateManager; } }
     public ShipManager ShipManager { get { return shipManager; } }
     public Collider PadCollider { get { return padCollider; } }
-    // public PositionConstraint PositionConstraint { get { return positionConstraint; } }
     public List<BoxCollider> GearColliders { get { return gearColliders; } }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         shipManager = GetComponent<ShipManager>();
         animator = GetComponent<Animator>();
-        // positionConstraint = GetComponent<PositionConstraint>();
         shipLandingSystemStateManager = new ShipLandingSystemStateManager(this);
         SetPose();
     }
@@ -67,5 +64,13 @@ public class ShipLandingSystem : MonoBehaviour
             else { padContact = false; }
         }
     }
+    public void DestroyRigidBody()
+    {
+        Destroy(shipManager.Rb);
+    }
+    public void CreateRigidBody()
+    {
+        gameObject.AddComponent<Rigidbody>();
+        
+    }
 }
-            // Debug.Log(currentClip.name+" "+name);  p

@@ -7,11 +7,13 @@ public class TestRuntimeUI : MonoBehaviour
     private TMP_Text m_TextComponent;
     private Canvas canvas;
     private Rigidbody rb;
+    private ShipManager shipManager;
     private void Awake()
     {
         m_TextComponent = GetComponent<TMP_Text>();
         canvas = GetComponentInParent<Canvas>();
         rb = canvas.GetComponentInParent<Rigidbody>();
+        shipManager = GetComponentInParent<ShipManager>();
         //Debug.Log("awake");
     }
     void Update()
@@ -26,8 +28,12 @@ public class TestRuntimeUI : MonoBehaviour
         //{
         //    obj = DropContainer.score + " / " + DropContainer.goal+" CONTAINERS";
         //}
-        Vector3 localV = transform.InverseTransformDirection(rb.linearVelocity);
-        m_TextComponent.text = "RVEL:"+Mathf.Round(localV.magnitude)/* +"\nXVEL:" + Mathf.Round(localV.x)+"\nYVEL:"+Mathf.Round(localV.y)+"\nZVEL:" + Mathf.Round(localV.z) */;
+        if (rb)
+        {
+            Vector3 localV = transform.InverseTransformDirection(rb.linearVelocity);
+            m_TextComponent.text = "RVEL:"+Mathf.Round(localV.magnitude);
+        }
+        /* +"\nXVEL:" + Mathf.Round(localV.x)+"\nYVEL:"+Mathf.Round(localV.y)+"\nZVEL:" + Mathf.Round(localV.z) */
 
     }
 

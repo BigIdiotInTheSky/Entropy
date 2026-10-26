@@ -24,7 +24,8 @@ public class NavHud : MonoBehaviour
 
     void Update()
     {
-
+        if (rb)
+        {
         Vector3 localV = transform.InverseTransformDirection(rb.linearVelocity);
         marker.anchoredPosition = new Vector2(localV.x, localV.y);
         if (Mathf.Round(localV.z) == 0)
@@ -33,8 +34,6 @@ public class NavHud : MonoBehaviour
         }
         else if (localV.z > 0) { image.sprite = psprite; }
         else { image.sprite = rsprite; }
-
- 
-
+        }
     }
 }

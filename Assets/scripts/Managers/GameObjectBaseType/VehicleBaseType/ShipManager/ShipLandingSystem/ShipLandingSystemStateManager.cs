@@ -7,6 +7,9 @@ public class ShipLandingSystemStateManager
     private ShipLandingSystemUpState shipLandingSystemUpState;
     private ShipLandingSystem shipLandingSystem;
 
+    public ShipLandingSystemBaseState CurrentShipLandingState { get { return currentShipLandingState; } }
+    public ShipLandingSystemDownState ShipLandingSystemDownState { get { return shipLandingSystemDownState; } }
+    public ShipLandingSystemUpState ShipLandingSystemUpState { get { return shipLandingSystemUpState; } }
     public ShipLandingSystemStateManager(ShipLandingSystem shipLandingSystem)
     {
         shipLandingSystemDownState = new ShipLandingSystemDownState(shipLandingSystem);

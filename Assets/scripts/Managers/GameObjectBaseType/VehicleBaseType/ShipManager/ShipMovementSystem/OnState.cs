@@ -39,6 +39,8 @@ public class OnState : SMSBaseState
         rotationStateManagerY.CurrentState.UpdateState(rotateOutput.y, (float)Math.Round(localT.y,2), trans.up);
         rotationStateManagerZ.CurrentState.UpdateState(rotateOutput.z, (float)Math.Round(localT.z,2), trans.forward);
 
+        shipManager.ShipVTOLSystem.UpdateVTOl();
+
         vtolStateManager.CurrentState.UpdateState(shipManager.ShipVTOLSystem.ShipVTOLSystemStateManager.CurrentShipVTOLState.MoveActionValue,
             (float)Math.Round(shipManager.ShipVTOLSystem.ShipVTOLSystemStateManager.CurrentShipVTOLState.LocalV,1), shipManager.ShipVTOLSystem.ShipVTOLSystemStateManager.CurrentShipVTOLState.Trans);
     }
