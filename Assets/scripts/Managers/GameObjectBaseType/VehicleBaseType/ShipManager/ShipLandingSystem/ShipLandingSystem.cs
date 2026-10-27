@@ -55,7 +55,7 @@ public class ShipLandingSystem : MonoBehaviour
         if (collider.gameObject.tag == "pad marker")
         {
             if ((Quaternion.Angle(collider.transform.rotation, gameObject.transform.rotation) < 120 || Quaternion.Angle(collider.transform.rotation, gameObject.transform.rotation) > 60) && 
-                Math.Round(ShipManager.Rb.linearVelocity.magnitude, 1) == 0)
+                Math.Round(shipManager.Rb.linearVelocity.magnitude, 1) == 0)
             {
                 padContact = true;
                 padCollider = collider;
@@ -63,14 +63,5 @@ public class ShipLandingSystem : MonoBehaviour
             }
             else { padContact = false; }
         }
-    }
-    public void DestroyRigidBody()
-    {
-        Destroy(shipManager.Rb);
-    }
-    public void CreateRigidBody()
-    {
-        gameObject.AddComponent<Rigidbody>();
-        
     }
 }

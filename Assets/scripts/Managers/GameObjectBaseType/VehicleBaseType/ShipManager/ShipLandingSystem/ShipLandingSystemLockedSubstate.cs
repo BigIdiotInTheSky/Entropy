@@ -12,8 +12,6 @@ public class ShipLandingSystemLockedSubstate : ShipLandingSystemBaseSubstate
     }
     private void Lock()
     {
-        // shipLandingSystemDownState.ShipLandingSystem.ShipManager.Rb.maxLinearVelocity = 0;
-        // shipLandingSystemDownState.ShipLandingSystem.ShipManager.Rb.freezeRotation = true;
         shipLandingSystemDownState.ShipLandingSystem.ShipManager.ShipMovementSystem.SMSStateManager.MoveOff();
         shipLandingSystemDownState.ShipLandingSystem.transform.SetParent(shipLandingSystemDownState.ShipLandingSystem.PadCollider.transform);
     }

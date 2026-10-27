@@ -15,7 +15,7 @@ public class ShipLandingSystemDownState : ShipLandingSystemBaseState
         shipLandingSystemLockedSubstate = new ShipLandingSystemLockedSubstate(this);
         shipLandingSystemUnlockedSubstate = new ShipLandingSystemUnlockedSubstate(this);
         currentShipLandingSystemSubstate = shipLandingSystemUnlockedSubstate;
-        currentShipLandingSystemSubstate.EnterState();
+        // currentShipLandingSystemSubstate.EnterState();
     }
     public override void EnterState()
     {

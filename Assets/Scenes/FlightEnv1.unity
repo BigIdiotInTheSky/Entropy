@@ -27051,8 +27051,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5, y: 10, z: 5}
-  m_Center: {x: 0, y: 7.4680905, z: -3.9296687}
+  m_Size: {x: 5, y: 9.999999, z: 2.625992}
+  m_Center: {x: 0, y: 7.4681726, z: -2.742706}
 --- !u!65 &967039237
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -53239,26 +53239,6 @@ MonoBehaviour:
   gearColliders:
   - {fileID: 1176286762}
   - {fileID: 1030482299}
---- !u!1818360608 &1433090498
-PositionConstraint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1433090472}
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Weight: 0
-  m_TranslationAtRest: {x: -29.98095, y: 72.50271, z: 521.3}
-  m_TranslationOffset: {x: 0, y: 0, z: 149.60645}
-  m_AffectTranslationX: 1
-  m_AffectTranslationY: 1
-  m_AffectTranslationZ: 1
-  m_Active: 0
-  m_IsLocked: 1
-  m_Sources:
-  - sourceTransform: {fileID: 256624351}
-    weight: 1
 --- !u!114 &1433090502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76885,15 +76865,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3855211115648309471, guid: 2cd9e7c2a7b23864399dbe8de568ae6f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -29.98095
+      value: -8.461899
       objectReference: {fileID: 0}
     - target: {fileID: 3855211115648309471, guid: 2cd9e7c2a7b23864399dbe8de568ae6f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 72.96003
+      value: 61.86274
       objectReference: {fileID: 0}
     - target: {fileID: 3855211115648309471, guid: 2cd9e7c2a7b23864399dbe8de568ae6f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 521.3
+      value: 540.9935
       objectReference: {fileID: 0}
     - target: {fileID: 3855211115648309471, guid: 2cd9e7c2a7b23864399dbe8de568ae6f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -77266,9 +77246,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4524893567896420965, guid: 2cd9e7c2a7b23864399dbe8de568ae6f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1433090494}
-    - targetCorrespondingSourceObject: {fileID: 4524893567896420965, guid: 2cd9e7c2a7b23864399dbe8de568ae6f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1433090498}
     - targetCorrespondingSourceObject: {fileID: 4524893567896420965, guid: 2cd9e7c2a7b23864399dbe8de568ae6f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1433090502}

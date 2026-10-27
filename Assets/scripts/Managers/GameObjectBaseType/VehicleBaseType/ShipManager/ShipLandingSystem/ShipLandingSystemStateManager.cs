@@ -43,6 +43,5 @@ public class ShipLandingSystemStateManager
             }
             else { shipLandingSystemDownState.CurrentShipLandingSystemSubstate = shipLandingSystemDownState.ShipLandingSystemLockedSubstate; }
         }
-        else { Debug.Log("Bad lock"); }
     }
 }
