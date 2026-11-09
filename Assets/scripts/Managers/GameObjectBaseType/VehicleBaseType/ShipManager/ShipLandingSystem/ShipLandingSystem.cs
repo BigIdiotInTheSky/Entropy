@@ -12,6 +12,7 @@ public class ShipLandingSystem : MonoBehaviour
     private bool padContact;
     private ShipManager shipManager;
     private Collider padCollider;
+    private Rigidbody rigidbody;
 
     public Animator Animator { get { return animator; } }
     public bool PadContact { get { return padContact; } }
@@ -24,6 +25,7 @@ public class ShipLandingSystem : MonoBehaviour
     {
         shipManager = GetComponent<ShipManager>();
         animator = GetComponent<Animator>();
+        rigidbody = GetComponent<Rigidbody>();
         shipLandingSystemStateManager = new ShipLandingSystemStateManager(this);
         SetPose();
     }
@@ -55,7 +57,7 @@ public class ShipLandingSystem : MonoBehaviour
         if (collider.gameObject.tag == "pad marker")
         {
             if ((Quaternion.Angle(collider.transform.rotation, gameObject.transform.rotation) < 120 || Quaternion.Angle(collider.transform.rotation, gameObject.transform.rotation) > 60) && 
-                Math.Round(shipManager.Rb.linearVelocity.magnitude, 1) == 0)
+                Math.Round(rigidbody.linearVelocity.magnitude, 1) == 0)
             {
                 padContact = true;
                 padCollider = collider;

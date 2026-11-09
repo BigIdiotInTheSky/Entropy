@@ -7,7 +7,7 @@ public class ShipLandingSystemUpState : ShipLandingSystemBaseState
     {
         ToggleGearAnims();
         ToggleGearCollision(false);
-        shipLandingSystem.ShipManager.Rb.maxLinearVelocity = shipLandingSystem.ShipManager.ShipProfile.MaxLinearVelocity;
+        // shipLandingSystem.ShipManager.Rigidbody.maxLinearVelocity = shipLandingSystem.ShipManager.ShipProfile.MaxLinearVelocity;
 
     }
     public override void InitState()

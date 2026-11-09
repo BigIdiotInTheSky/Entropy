@@ -7,6 +7,7 @@ public class ShipVTOLSystem : MonoBehaviour
     private ShipManager shipManager;
     private Animator animator;
     private ShipVTOLSystemStateManager shipVTOLSystemStateManager;
+    private Rigidbody rigidbody;
 
     public ShipManager ShipManager { get { return shipManager; } }
     public Animator Animator { get { return animator; } }
@@ -17,6 +18,7 @@ public class ShipVTOLSystem : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         shipManager = GetComponent<ShipManager>();
+        rigidbody = GetComponent<Rigidbody>();
         shipVTOLSystemStateManager = new ShipVTOLSystemStateManager(this);
         SetPose();
     }
@@ -24,7 +26,7 @@ public class ShipVTOLSystem : MonoBehaviour
     // Update is called once per frame
     public void UpdateVTOl()
     {
-        Vector3 localV = shipManager.Trans.InverseTransformDirection(shipManager.Rb.linearVelocity);
+        Vector3 localV = shipManager.transform.InverseTransformDirection(rigidbody.linearVelocity);
         shipVTOLSystemStateManager.CurrentShipVTOLState.UpdateState(localV);
     }
 

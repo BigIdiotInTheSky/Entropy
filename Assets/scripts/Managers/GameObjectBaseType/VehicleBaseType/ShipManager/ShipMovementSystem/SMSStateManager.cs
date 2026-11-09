@@ -6,15 +6,18 @@ public class SMSStateManager
     private SMSBaseState currentState;
     private OnState onState;
     private OffState offState;
+    private ShipMovementSystem shipMovementSystem;
+
     public SMSBaseState CurrentState { get { return currentState; } }
     public OnState OnState { get { return onState; } }
     public OffState OffState{ get { return offState; } }
-    public ShipMovementSystem shipMovementSystem;
+    public ShipMovementSystem ShipMovementSystem { get { return shipMovementSystem; } }
+
     public SMSStateManager(ShipMovementSystem shipMovementSystem)
     {
-        offState = new OffState(this, shipMovementSystem.MoveThrusters, shipMovementSystem.RotateThrusters, shipMovementSystem.VTOLThrusters["downPos"]);
-        onState = new OnState(this,  shipMovementSystem.MoveThrusters, shipMovementSystem.RotateThrusters, shipMovementSystem.VTOLThrusters["downPos"], shipMovementSystem.ShipManager);
         this.shipMovementSystem = shipMovementSystem;
+        offState = new OffState(this, shipMovementSystem.MoveThrusters, shipMovementSystem.RotateThrusters, shipMovementSystem.VTOLThrusters["downPos"]);
+        onState = new OnState(this,  shipMovementSystem.MoveThrusters, shipMovementSystem.RotateThrusters, shipMovementSystem.VTOLThrusters["downPos"]);
         currentState = offState;
         currentState.EnterState();
     }

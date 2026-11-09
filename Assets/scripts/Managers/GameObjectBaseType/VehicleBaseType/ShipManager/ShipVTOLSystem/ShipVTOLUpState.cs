@@ -15,6 +15,6 @@ public class ShipVTOLUpState : ShipVTOLBaseState
     {
         moveActionValue = shipVTOLSystem.ShipManager.ShipControlSystem.CurrentControlType.MoveOutput.z;
         localv = localV.z;
-        trans = shipVTOLSystem.ShipManager.Trans.forward;
+        trans = shipVTOLSystem.ShipManager.transform.forward;
     }
 }

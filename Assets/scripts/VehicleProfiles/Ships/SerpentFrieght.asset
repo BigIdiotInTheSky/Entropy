@@ -18,5 +18,5 @@ MonoBehaviour:
   aftAccelerationForce: 250
   tangentAcclerationForce: 100
   torqueForce: 5
-  positiveVTOLForce: 0
-  negativeVTOLForce: 0
+  positiveVTOLForce: 250
+  negativeVTOLForce: 100

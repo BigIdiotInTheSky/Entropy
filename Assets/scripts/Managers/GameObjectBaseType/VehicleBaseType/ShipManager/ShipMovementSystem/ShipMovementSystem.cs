@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using JetBrains.Rider.Unity.Editor;
 
 public class ShipMovementSystem : MonoBehaviour
 {
@@ -8,11 +9,14 @@ public class ShipMovementSystem : MonoBehaviour
     private Dictionary<string,List<ThrusterEffectInfo>> moveThrusters;
     private Dictionary<string,List<ThrusterEffectInfo>> rotateThrusters;
     private Dictionary<string, Dictionary<string, List<ThrusterEffectInfo>>> vtolThrusters;
+    private Rigidbody rigidbody;
+
     public ShipManager ShipManager { get { return shipManager; } }
     public SMSStateManager SMSStateManager { get { return sMSStateManager; } }
     public Dictionary<string,List<ThrusterEffectInfo>> RotateThrusters { get { return rotateThrusters; } }
     public Dictionary<string,List<ThrusterEffectInfo>> MoveThrusters { get { return moveThrusters; } }
     public Dictionary<string, Dictionary<string, List<ThrusterEffectInfo>>> VTOLThrusters { get { return vtolThrusters; } }
+    public Rigidbody Rigidbody { get { return rigidbody; } }
 
     private void InitThrusters()
     {
@@ -53,13 +57,17 @@ public class ShipMovementSystem : MonoBehaviour
 
     void Awake()
     {
-        InitThrusters();
+        rigidbody = GetComponent<Rigidbody>();
         shipManager = GetComponent<ShipManager>();
-        shipManager.Rb.maxAngularVelocity = shipManager.ShipProfile.MaxAngularVelocity;
-        shipManager.Rb.maxLinearVelocity = shipManager.ShipProfile.MaxLinearVelocity;
+        InitThrusters();
         sMSStateManager = new SMSStateManager(this);
+        // shipManager.Rigidbody.maxAngularVelocity = shipManager.ShipProfile.MaxAngularVelocity;
+        // shipManager.Rigidbody.maxLinearVelocity = shipManager.ShipProfile.MaxLinearVelocity;
     }
-    
+    void Start()
+    {
+
+    }
     void FixedUpdate()
     {
         sMSStateManager.CurrentState.UpdateState();
