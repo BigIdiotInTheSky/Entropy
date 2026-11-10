@@ -1,47 +1,65 @@
+using System.Diagnostics;
 using UnityEngine;
 
 public class VehicleCargoSystem : MonoBehaviour
 {
     [Header("Cargo Grid")]
-    [SerializeField,Range(1,100)] private int xGridLength;
-    [SerializeField,Range(1,100)] private int yGridLength;
-    [SerializeField,Range(1,100)] private int zGridLength;
-    
-    private bool containerContact;
-    private VehicleTypeBase vehicleManager;
-    private Collider containerCollider;
-    // private VehicleCargoSystemStateManager vehicleCargoSystemStateManager;
+    [SerializeField, Range(1,100)] private int xGridSize;
+    [SerializeField, Range(1,100)] private int yGridSize;
+    [SerializeField, Range(1,100)] private int zGridSize;
+    private GameObjectBaseType gameObjectBaseType;
+    private CargoContainerManager[,,] containerGrid;
+    private Rigidbody rigidbody;
+    private Transform containerMarker;
+    // public CargoContainerLockSystem[,,] ContainerGrid { get { return containerGrid; } set { containerGrid = value; } }
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    // public bool ContainerContact { get { return containerContact; } }
-    public int XGridLength { get { return xGridLength; } }
-    public int YGridLength { get { return yGridLength; } }
-    public int ZGridLength { get { return zGridLength; } }
-    public VehicleTypeBase VehicleManager { get { return vehicleManager; } }
-    public Collider ContainerCollider { get { return containerCollider; } }
     void Start()
     {
-        vehicleManager = GetComponent<VehicleTypeBase>();
-        // vehicleCargoSystemStateManager = new VehicleCargoSystemStateManager(this);
-    }
-    void OnTriggerStay(Collider collider)
-    {
-        // Debug.Log(Quaternion.Angle(collider.transform.rotation, gameObject.transform.rotation) < 120 || Quaternion.Angle(collider.transform.rotation, gameObject.transform.rotation) > 60);
-        Rigidbody target = collider.GetComponent<Rigidbody>();
-        if (target &&  collider.gameObject.tag == "container")
-        {
-            CargoContainerLockSystem cargoContainerLockSystem = collider.gameObject.GetComponent<CargoContainerLockSystem>();
-            // if ((Quaternion.Angle(collider.transform.rotation, gameObject.transform.rotation) < 120 || Quaternion.Angle(collider.transform.rotation, gameObject.transform.rotation) > 60) && 
-            //     Math.Round(vehicleManager.Rb.linearVelocity.magnitude, 1) == 0)
-            {
-                // containerContact = true;
-                containerCollider = collider;
-                // vehicleCargoSystemStateManager.CurrentVehicleCargoSystemState = vehicleCargoSystemStateManager.VehicleCargoSystemLockedState;
-            }
-            // else { containerContact = false; }
-        }
+        gameObjectBaseType = GetComponent<GameObjectBaseType>();
+        rigidbody = GetComponent<Rigidbody>();
+        containerGrid = new CargoContainerManager[xGridSize,yGridSize,zGridSize];
+        // transform.Find();
     }
     void FixedUpdate()
     {
-        // vehicleCargoSystemStateManager.CurrentVehicleCargoSystemState.UpdateState();
+        for (int i = 0; i < containerGrid.GetLength(0); i++)
+        {
+            for (int j = 0; j < containerGrid.GetLength(1); j++)
+            {
+                for (int k = 0; k < containerGrid.GetLength(2); k++)
+                {
+                    if (containerGrid[i,k,j])
+                    {
+                        Rigidbody rigidbody = containerGrid[i,k,j].GetComponent<Rigidbody>();
+                        rigidbody.MoveRotation(Quaternion.Euler(this.rigidbody.rotation.eulerAngles.x, this.rigidbody.rotation.eulerAngles.y, this.rigidbody.rotation.eulerAngles.z));   
+                    }
+                }
+            }
+        }
+    }
+    void OnTriggerEnter(Collider collider)
+    {
+        CargoContainerManager cargoContainerManager = collider.GetComponent<CargoContainerManager>();
+        if(cargoContainerManager)
+        {
+            collider.transform.SetParent(transform);
+            cargoContainerManager.CargoContainerLockSystem.CargoContainerLockSystemStateManager.CurrentCargoContainerSystemState = 
+                cargoContainerManager.CargoContainerLockSystem.CargoContainerLockSystemStateManager.CargoContainerSystemLockedState;
+            for (int i = 0; i < containerGrid.GetLength(0); i++)
+            {
+                for (int j = 0; j < containerGrid.GetLength(1); j++)
+                {
+                    for (int k = 0; k < containerGrid.GetLength(2); k++)
+                    {
+                        if (!containerGrid[i,k,j])
+                        {
+                            containerGrid[i,k,j] = cargoContainerManager;
+                            UnityEngine.Debug.Log("Container added to grid!");
+                        }
+                    }
+                }
+            }
+        }
     }
 }

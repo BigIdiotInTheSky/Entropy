@@ -2,16 +2,15 @@ using UnityEngine;
 
 public class CargoContainerLockSystem : MonoBehaviour
 {
-    private bool containerContact;
     private CargoContainerManager cargoContainerManager;
-    private CargoContainerSystemStateManager cargoContainerSystemStateManager;
-
-    // public bool ContainerContact { get { return containerContact; } }
+    private CargoContainerLockSystemStateManager cargoContainerLockSystemStateManager;
+    
     public CargoContainerManager CargoContainerManager { get { return cargoContainerManager; } }
+    public CargoContainerLockSystemStateManager CargoContainerLockSystemStateManager { get { return cargoContainerLockSystemStateManager; } }
     void Start()
     {
         cargoContainerManager = GetComponent<CargoContainerManager>();
-        cargoContainerSystemStateManager = new CargoContainerSystemStateManager(this);
+        cargoContainerLockSystemStateManager = new CargoContainerLockSystemStateManager(this);
     }
     void FixedUpdate()
     {

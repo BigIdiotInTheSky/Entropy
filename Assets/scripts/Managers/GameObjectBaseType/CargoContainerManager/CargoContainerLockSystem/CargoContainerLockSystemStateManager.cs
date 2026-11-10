@@ -1,21 +1,21 @@
 using UnityEngine;
 
-public class CargoContainerSystemStateManager
+public class CargoContainerLockSystemStateManager
 {
     private CargoContainerBaseState currentCargoContainerSystemState;
     private CargoContainerSystemLockedState cargoContainerSystemLockedState;
-    private CargoContainerSystemUnlockedState cargoContainerSystemUnlockedState;
+    private CargoContainerLockSystemUnlockedState cargoContainerLockSystemUnlockedState;
     private CargoContainerLockSystem cargoContainerLockSystem;
 
     public CargoContainerBaseState CurrentCargoContainerSystemState { get { return currentCargoContainerSystemState; } set { currentCargoContainerSystemState = value; currentCargoContainerSystemState.EnterState(); } }
     public CargoContainerSystemLockedState CargoContainerSystemLockedState { get { return cargoContainerSystemLockedState; } }
-    public CargoContainerSystemUnlockedState CargoContainerSystemUnlockedState { get { return cargoContainerSystemUnlockedState; } }
+    public CargoContainerLockSystemUnlockedState CargoContainerSystemUnlockedState { get { return cargoContainerLockSystemUnlockedState; } }
     public CargoContainerLockSystem CargoContainerLockSystem { get { return cargoContainerLockSystem; } }
-    public CargoContainerSystemStateManager(CargoContainerLockSystem cargoContainerLockSystem)
+    public CargoContainerLockSystemStateManager(CargoContainerLockSystem cargoContainerLockSystem)
     {
         this.cargoContainerLockSystem = cargoContainerLockSystem;
         cargoContainerSystemLockedState = new CargoContainerSystemLockedState(this);
-        cargoContainerSystemUnlockedState = new CargoContainerSystemUnlockedState(this);
-        currentCargoContainerSystemState = cargoContainerSystemUnlockedState;
+        cargoContainerLockSystemUnlockedState = new CargoContainerLockSystemUnlockedState(this);
+        currentCargoContainerSystemState = cargoContainerLockSystemUnlockedState;
     }
 }

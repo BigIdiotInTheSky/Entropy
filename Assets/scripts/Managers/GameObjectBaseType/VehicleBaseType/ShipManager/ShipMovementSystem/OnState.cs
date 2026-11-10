@@ -46,14 +46,6 @@ public class OnState : SMSBaseState
 
     private void InitStateManagers()
     {
-        Debug.Log(sMSStateManager);
-        Debug.Log(sMSStateManager.ShipMovementSystem.ShipManager);
-        Debug.Log(sMSStateManager.ShipMovementSystem.ShipManager.ShipProfile);
-        Debug.Log(sMSStateManager.ShipMovementSystem.ShipManager.ShipProfile.TangentAcclerationForce);
-        Debug.Log(sMSStateManager.ShipMovementSystem.Rigidbody);
-        Debug.Log(moveThrusters["rightThrusters"]);
-        Debug.Log(moveThrusters["leftThrusters"]);
-        // Debug.Log(shipManager.Rigidbody);
         stateManagerX = new StateManager(true, sMSStateManager.ShipMovementSystem.ShipManager.ShipProfile.TangentAcclerationForce, 
             sMSStateManager.ShipMovementSystem.ShipManager.ShipProfile.TangentAcclerationForce, sMSStateManager.ShipMovementSystem.Rigidbody, moveThrusters["rightThrusters"], 
             moveThrusters["leftThrusters"],this);

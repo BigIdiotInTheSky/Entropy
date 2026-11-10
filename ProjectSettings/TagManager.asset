@@ -10,6 +10,7 @@ TagManager:
   - escapepod
   - thruster
   - pad marker
+  - containermarker
   layers:
   - Default
   - TransparentFX
