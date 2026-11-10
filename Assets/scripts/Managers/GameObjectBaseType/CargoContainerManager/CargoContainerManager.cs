@@ -1,8 +1,7 @@
 using UnityEngine;
 
-public class CargoContainerManager : GameObjectTypeBase
+public class CargoContainerManager : GameObjectBaseType
 {
-    
     void Awake()
     {
         
