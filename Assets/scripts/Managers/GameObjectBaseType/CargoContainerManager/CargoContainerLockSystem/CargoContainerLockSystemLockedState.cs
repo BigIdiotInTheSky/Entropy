@@ -10,6 +10,6 @@ public class CargoContainerSystemLockedState : CargoContainerBaseState
     {
         rigidbody = cargoContainerLockSystemStateManager.CargoContainerLockSystem.GetComponent<Rigidbody>();
         rigidbody.detectCollisions = false;
-        rigidbody.constraints = RigidbodyConstraints.FreezePosition;
+        // rigidbody.constraints = RigidbodyConstraints.FreezeAll;
     }
 }

@@ -12,8 +12,4 @@ public class CargoContainerLockSystem : MonoBehaviour
         cargoContainerManager = GetComponent<CargoContainerManager>();
         cargoContainerLockSystemStateManager = new CargoContainerLockSystemStateManager(this);
     }
-    void FixedUpdate()
-    {
-        // vehicleCargoSystemStateManager.CurrentVehicleCargoSystemState.UpdateState();
-    }
 }

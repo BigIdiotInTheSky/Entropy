@@ -19,7 +19,8 @@ public class VehicleCargoSystem : MonoBehaviour
         gameObjectBaseType = GetComponent<GameObjectBaseType>();
         rigidbody = GetComponent<Rigidbody>();
         containerGrid = new CargoContainerManager[xGridSize,yGridSize,zGridSize];
-        // transform.Find();
+        containerMarker = transform.Find("ContainerMarker");
+        if (!containerMarker) { throw new System.Exception("ContainerMarker not found"); }   
     }
     void FixedUpdate()
     {
@@ -31,8 +32,10 @@ public class VehicleCargoSystem : MonoBehaviour
                 {
                     if (containerGrid[i,k,j])
                     {
-                        Rigidbody rigidbody = containerGrid[i,k,j].GetComponent<Rigidbody>();
-                        rigidbody.MoveRotation(Quaternion.Euler(this.rigidbody.rotation.eulerAngles.x, this.rigidbody.rotation.eulerAngles.y, this.rigidbody.rotation.eulerAngles.z));   
+                        Transform transform = containerGrid[i,k,j].transform;
+                        
+                        transform.localPosition = Vector3.zero;
+                        transform.rotation = containerMarker.rotation;   
                     }
                 }
             }
@@ -43,9 +46,10 @@ public class VehicleCargoSystem : MonoBehaviour
         CargoContainerManager cargoContainerManager = collider.GetComponent<CargoContainerManager>();
         if(cargoContainerManager)
         {
-            collider.transform.SetParent(transform);
+            // collider.transform.SetParent(transform);
             cargoContainerManager.CargoContainerLockSystem.CargoContainerLockSystemStateManager.CurrentCargoContainerSystemState = 
                 cargoContainerManager.CargoContainerLockSystem.CargoContainerLockSystemStateManager.CargoContainerSystemLockedState;
+            cargoContainerManager.transform.SetParent(containerMarker);
             for (int i = 0; i < containerGrid.GetLength(0); i++)
             {
                 for (int j = 0; j < containerGrid.GetLength(1); j++)
