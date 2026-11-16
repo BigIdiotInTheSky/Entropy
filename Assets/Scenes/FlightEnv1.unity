@@ -53271,6 +53271,7 @@ MonoBehaviour:
   toggleVTOL: {fileID: 3048717162557125863, guid: 1ecf2ea1d3c39174883ffeab3d1a7e25, type: 3}
   toggleGear: {fileID: 320970676759021847, guid: 1ecf2ea1d3c39174883ffeab3d1a7e25, type: 3}
   toggleGearLock: {fileID: 5321791894596288267, guid: 1ecf2ea1d3c39174883ffeab3d1a7e25, type: 3}
+  jettisonCargo: {fileID: 3820901267609515873, guid: 1ecf2ea1d3c39174883ffeab3d1a7e25, type: 3}
 --- !u!114 &1433090486
 MonoBehaviour:
   m_ObjectHideFlags: 0
