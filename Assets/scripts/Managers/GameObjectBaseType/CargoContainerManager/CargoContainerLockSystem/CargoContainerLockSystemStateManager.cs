@@ -18,4 +18,17 @@ public class CargoContainerLockSystemStateManager
         cargoContainerLockSystemUnlockedState = new CargoContainerLockSystemUnlockedState(this);
         currentCargoContainerSystemState = cargoContainerLockSystemUnlockedState;
     }
+
+    public void UpdateState()
+    {
+        currentCargoContainerSystemState.UpdateState();
+    }
+    public void JettisonCargo()
+    {
+        if (currentCargoContainerSystemState == cargoContainerSystemLockedState)
+        {
+            currentCargoContainerSystemState = cargoContainerLockSystemUnlockedState;
+            currentCargoContainerSystemState.EnterState();
+        }
+    }
 }

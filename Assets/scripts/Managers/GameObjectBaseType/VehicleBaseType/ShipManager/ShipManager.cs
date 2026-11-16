@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-public class ShipManager : VehicleTypeBase
+public class ShipManager : VehicleBaseType
 {
     [SerializeField] private ShipProfile shipProfile;
     private ShipMovementSystem shipMovementSystem;

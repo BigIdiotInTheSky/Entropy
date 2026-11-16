@@ -6,6 +6,11 @@ public class CargoContainerLockSystemUnlockedState : CargoContainerBaseState
 
     public override void EnterState()
     {
-        // vehicleCargoSystemStateManager.VehicleCargoSystem.ContainerCollider.transform.SetParent(null);
+        cargoContainerLockSystemStateManager.CargoContainerLockSystem.transform.localPosition = new Vector3(0,0,5);
+        cargoContainerLockSystemStateManager.CargoContainerLockSystem.transform.SetParent(null);
+        rigidbody.detectCollisions = true;
+        rigidbody.constraints = RigidbodyConstraints.None;
     }
+
+    public override void UpdateState() {}
 }

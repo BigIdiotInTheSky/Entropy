@@ -5,12 +5,14 @@ using UnityEngine;
 public abstract class CargoContainerBaseState
 {
     protected CargoContainerLockSystemStateManager cargoContainerLockSystemStateManager;
-    protected GameObject parentGameObject;
+    protected Rigidbody rigidbody;
 
-    public GameObject ParentGameObject { get { return parentGameObject; } set { parentGameObject = value; } }
     public CargoContainerBaseState(CargoContainerLockSystemStateManager cargoContainerLockSystemStateManager)
     {
         this.cargoContainerLockSystemStateManager = cargoContainerLockSystemStateManager;
+        rigidbody = cargoContainerLockSystemStateManager.CargoContainerLockSystem.GetComponent<Rigidbody>();
     }
     public abstract void EnterState();
+
+    public abstract void UpdateState();
 }
