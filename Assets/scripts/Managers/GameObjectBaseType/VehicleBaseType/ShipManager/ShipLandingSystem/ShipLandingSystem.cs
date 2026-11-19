@@ -20,6 +20,7 @@ public class ShipLandingSystem : MonoBehaviour
     public ShipManager ShipManager { get { return shipManager; } }
     public Collider PadCollider { get { return padCollider; } }
     public List<BoxCollider> GearColliders { get { return gearColliders; } }
+    public Rigidbody Rigidbody { get { return rigidbody; } }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -52,18 +53,13 @@ public class ShipLandingSystem : MonoBehaviour
         }
         throw new Exception("Not found");
     }
-    void OnTriggerStay(Collider collider)
+    void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.tag == "pad marker")
         {
-            if ((Quaternion.Angle(collider.transform.rotation, gameObject.transform.rotation) < 120 || Quaternion.Angle(collider.transform.rotation, gameObject.transform.rotation) > 60) && 
-                Math.Round(rigidbody.linearVelocity.magnitude, 1) == 0)
-            {
-                padContact = true;
-                padCollider = collider;
-                Debug.Log("(L) to lock");
-            }
-            else { padContact = false; }
+            padContact = true;
+            padCollider = collider;
+            Debug.Log("(L) to lock");
         }
     }
 }

@@ -1,4 +1,6 @@
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public abstract class CargoSystemBaseType : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public abstract class CargoSystemBaseType : MonoBehaviour
     [SerializeField, Range(1,100)] private int zGridSize;
     protected GameObjectBaseType gameObjectBaseType;
     protected CargoContainerLockSystem[,,] containerGrid;
+    protected BoxCollider[,,] containerColliders;
     protected Rigidbody rigidbody;
     protected Transform containerMarker;
 
@@ -18,6 +21,7 @@ public abstract class CargoSystemBaseType : MonoBehaviour
         gameObjectBaseType = GetComponent<GameObjectBaseType>();
         rigidbody = GetComponent<Rigidbody>();
         containerGrid = new CargoContainerLockSystem[xGridSize,yGridSize,zGridSize];
+        containerColliders = new BoxCollider[xGridSize,yGridSize,zGridSize];
         containerMarker = transform.Find("ContainerMarker");
         if (!containerMarker) { throw new System.Exception("ContainerMarker not found"); }   
     }
@@ -35,16 +39,24 @@ public abstract class CargoSystemBaseType : MonoBehaviour
                     {
                         if (containerGrid[i,k,j] == null)
                         {
-                            int[] index = {i,k,j};
-                            containerGrid[i,k,j] = cargoContainerLockSystem;
+                            int[] index = {i,j,k};
+                            containerGrid[i,j,k] = cargoContainerLockSystem;
                             cargoContainerLockSystem.CargoSystemBaseType = this;
                             CargoContainerLockSystemStateManager cargoContainerLockSystemStateManager = cargoContainerLockSystem.CargoContainerLockSystemStateManager;
                             cargoContainerLockSystemStateManager.CargoContainerSystemLockedState.ContainerIndex = index;
                             cargoContainerLockSystemStateManager.CurrentCargoContainerSystemState = cargoContainerLockSystemStateManager.CargoContainerSystemLockedState;
+                            BoxCollider containerCollider = gameObject.AddComponent<BoxCollider>();
+                            containerCollider.center = containerMarker.localPosition;
+
+                            containerCollider.size = new Vector3(cargoContainerLockSystem.ContainerCollider.size.z, cargoContainerLockSystem.ContainerCollider.size.y, cargoContainerLockSystem.ContainerCollider.size.x);
+                            Debug.Log(cargoContainerLockSystem.ContainerCollider.size);
+                            containerColliders[i,j,k] = containerCollider;
+                            return;
                         }
                     }
                 }
             }
+            Debug.Log("grid full!");
         }
     }
 
@@ -56,11 +68,15 @@ public abstract class CargoSystemBaseType : MonoBehaviour
             {
                 for (int k = 0; k < containerGrid.GetLength(2); k++)
                 {
-                    CargoContainerLockSystem cargoContainerLockSystem = containerGrid[i,k,j];
+                    CargoContainerLockSystem cargoContainerLockSystem = containerGrid[i,j,k];
                     if (cargoContainerLockSystem)
                     {
+                        CargoContainerLockSystemStateManager cargoContainerLockSystemStateManager = cargoContainerLockSystem.CargoContainerLockSystemStateManager;
+                        cargoContainerLockSystemStateManager.CurrentCargoContainerSystemState = cargoContainerLockSystemStateManager.CargoContainerSystemUnlockedState;
                         cargoContainerLockSystem.CargoContainerLockSystemStateManager.JettisonCargo();
-                        containerGrid[i,k,j] = null;
+                        containerGrid[i,j,k] = null;
+                        BoxCollider containerCollider = containerColliders[i,j,k];
+                        Destroy(containerCollider);
                     }
                 }
             }
