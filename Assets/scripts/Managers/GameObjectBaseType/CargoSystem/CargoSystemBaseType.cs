@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -6,21 +7,26 @@ using UnityEngine.UIElements;
 public abstract class CargoSystemBaseType : MonoBehaviour
 {
     const int maxGridSize = 100;
-    [SerializeField] private GameObject cargoContainerPrefab;
 
     [Header("Cargo Grid")]
     [SerializeField, Range(1,maxGridSize)] private int xGridSize;
     [SerializeField, Range(1,maxGridSize)] private int yGridSize;
     [SerializeField, Range(1,maxGridSize)] private int zGridSize;
 
+    // Offset determines transfrom difference between containers on one cargo grid
+    [SerializeField] protected int xGridOffset;
+    [SerializeField] protected int yGridOffset;
+    [SerializeField] protected int zGridOffset;
+
     [Header("Load on Start")]
-    [SerializeField] private List<GameObject> startingContainers;
+    [SerializeField] private int startingContainers;
 
     protected GameObjectBaseType gameObjectBaseType;
     protected CargoContainerLockSystem[,,] containerGrid;
     protected BoxCollider[,,] containerColliders;
     protected Rigidbody rigidbody;
     protected Transform containerMarker;
+    protected Vector3 gridOffset;
 
     public Transform ContainerMarker { get { return containerMarker; } }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -30,9 +36,10 @@ public abstract class CargoSystemBaseType : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         containerGrid = new CargoContainerLockSystem[xGridSize,yGridSize,zGridSize];
         containerColliders = new BoxCollider[xGridSize,yGridSize,zGridSize];
+        gridOffset = Vector3.zero;
         containerMarker = transform.Find("ContainerMarker");
         if (!containerMarker) { throw new System.Exception("ContainerMarker not found"); }
-        if (startingContainers != null) { InitContainers(); }   
+        if (startingContainers != 0) { InitContainers(); }   
     }
     void OnTriggerEnter(Collider collider)
     {
@@ -60,6 +67,7 @@ public abstract class CargoSystemBaseType : MonoBehaviour
                         cargoContainerLockSystem.CargoContainerLockSystemStateManager.JettisonCargo();
                         containerGrid[i,j,k] = null;
                         BoxCollider containerCollider = containerColliders[i,j,k];
+                        
                         Destroy(containerCollider);
                     }
                 }
@@ -68,26 +76,33 @@ public abstract class CargoSystemBaseType : MonoBehaviour
     }
     private void AddContainerToGrid(CargoContainerLockSystem cargoContainerLockSystem)
     {
+
         for (int i = 0; i < containerGrid.GetLength(0); i++)
         {
+            // Debug.Log("i: "+i);
             for (int j = 0; j < containerGrid.GetLength(1); j++)
             {
+                // Debug.Log("j: "+j);
                 for (int k = 0; k < containerGrid.GetLength(2); k++)
                 {
-                    if (containerGrid[i,k,j] == null)
+                    // Debug.Log("k: "+k);
+                    if (containerGrid[i,j,k] == null)
                     {
+                        gridOffset = new Vector3(i*xGridOffset,k*yGridOffset*-1,j*zGridOffset*-1);
+
                         int[] index = {i,j,k};
                         containerGrid[i,j,k] = cargoContainerLockSystem;
                         cargoContainerLockSystem.CargoSystemBaseType = this;
                         CargoContainerLockSystemStateManager cargoContainerLockSystemStateManager = cargoContainerLockSystem.CargoContainerLockSystemStateManager;
                         cargoContainerLockSystemStateManager.CargoContainerSystemLockedState.ContainerIndex = index;
+                        cargoContainerLockSystemStateManager.CargoContainerSystemLockedState.ContainerOffset = gridOffset;
                         cargoContainerLockSystemStateManager.CurrentCargoContainerSystemState = cargoContainerLockSystemStateManager.CargoContainerSystemLockedState;
-                        BoxCollider containerCollider = gameObject.AddComponent<BoxCollider>();
-                        containerCollider.center = containerMarker.localPosition;
 
+                        BoxCollider containerCollider = gameObject.AddComponent<BoxCollider>();
+                        containerCollider.center = new Vector3 (containerMarker.localPosition.x+gridOffset.x, containerMarker.localPosition.y+gridOffset.y, containerMarker.localPosition.z+gridOffset.z);
                         containerCollider.size = new Vector3(cargoContainerLockSystem.ContainerCollider.size.z, cargoContainerLockSystem.ContainerCollider.size.y, cargoContainerLockSystem.ContainerCollider.size.x);
-                        Debug.Log(cargoContainerLockSystem.ContainerCollider.size);
                         containerColliders[i,j,k] = containerCollider;
+                        
                         return;
                     }
                 }
@@ -97,20 +112,17 @@ public abstract class CargoSystemBaseType : MonoBehaviour
     }
     private void InitContainers()
     {
-        for (int i = 0; i < startingContainers.Count; i++)
+        var cargoContainerObject = Resources.Load("cargocontainer");
+        if (!cargoContainerObject)
         {
-            GameObject cargoContainer;
-            if (startingContainers[i] == null)
-            {
-                cargoContainer = Instantiate(cargoContainerPrefab, containerMarker.localPosition, containerMarker.rotation);
-            }
-            else
-            {
-                cargoContainer = startingContainers[i];
-            }
+            throw new FileNotFoundException("container prefab not found!");
+        }
+
+        for (int i = 0; i < startingContainers; i++)
+        {
+            GameObject cargoContainer = Instantiate((GameObject)cargoContainerObject, new Vector3(0, 0, 0), Quaternion.identity);
             CargoContainerLockSystem cargoContainerLockSystem = cargoContainer.GetComponent<CargoContainerLockSystem>();
             if (cargoContainerLockSystem) { AddContainerToGrid(cargoContainerLockSystem); }
-
         }
     }
 }
