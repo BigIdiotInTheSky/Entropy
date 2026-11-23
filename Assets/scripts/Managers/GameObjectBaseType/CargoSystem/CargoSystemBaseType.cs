@@ -23,7 +23,7 @@ public abstract class CargoSystemBaseType : MonoBehaviour
 
     protected GameObjectBaseType gameObjectBaseType;
     protected CargoContainerLockSystem[,,] containerGrid;
-    protected BoxCollider[,,] containerColliders;
+    // protected BoxCollider[,,] containerColliders;
     protected Rigidbody rigidbody;
     protected Transform containerMarker;
     protected Vector3 gridOffset;
@@ -35,7 +35,7 @@ public abstract class CargoSystemBaseType : MonoBehaviour
         gameObjectBaseType = GetComponent<GameObjectBaseType>();
         rigidbody = GetComponent<Rigidbody>();
         containerGrid = new CargoContainerLockSystem[xGridSize,yGridSize,zGridSize];
-        containerColliders = new BoxCollider[xGridSize,yGridSize,zGridSize];
+        // containerColliders = new BoxCollider[xGridSize,yGridSize,zGridSize];
         gridOffset = Vector3.zero;
         containerMarker = transform.Find("ContainerMarker");
         if (!containerMarker) { throw new System.Exception("ContainerMarker not found"); }
@@ -66,9 +66,9 @@ public abstract class CargoSystemBaseType : MonoBehaviour
                         cargoContainerLockSystemStateManager.CurrentCargoContainerSystemState = cargoContainerLockSystemStateManager.CargoContainerSystemUnlockedState;
                         cargoContainerLockSystem.CargoContainerLockSystemStateManager.JettisonCargo();
                         containerGrid[i,j,k] = null;
-                        BoxCollider containerCollider = containerColliders[i,j,k];
+                        // BoxCollider containerCollider = containerColliders[i,j,k];
                         
-                        Destroy(containerCollider);
+                        // Destroy(containerCollider);
                     }
                 }
             }
@@ -98,10 +98,10 @@ public abstract class CargoSystemBaseType : MonoBehaviour
                         cargoContainerLockSystemStateManager.CargoContainerSystemLockedState.ContainerOffset = gridOffset;
                         cargoContainerLockSystemStateManager.CurrentCargoContainerSystemState = cargoContainerLockSystemStateManager.CargoContainerSystemLockedState;
 
-                        BoxCollider containerCollider = gameObject.AddComponent<BoxCollider>();
-                        containerCollider.center = new Vector3 (containerMarker.localPosition.x+gridOffset.x, containerMarker.localPosition.y+gridOffset.y, containerMarker.localPosition.z+gridOffset.z);
-                        containerCollider.size = new Vector3(cargoContainerLockSystem.ContainerCollider.size.z, cargoContainerLockSystem.ContainerCollider.size.y, cargoContainerLockSystem.ContainerCollider.size.x);
-                        containerColliders[i,j,k] = containerCollider;
+                        // BoxCollider containerCollider = gameObject.AddComponent<BoxCollider>();
+                        // containerCollider.center = cargoContainerLockSystem.transform.localPosition;
+                        // containerCollider.size = cargoContainerLockSystem.ContainerCollider.size;
+                        // containerColliders[i,j,k] = containerCollider;
                         
                         return;
                     }

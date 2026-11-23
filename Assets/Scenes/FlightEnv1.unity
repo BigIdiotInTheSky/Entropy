@@ -48567,7 +48567,7 @@ Transform:
   m_GameObject: {fileID: 1353785229}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0.7071068, z: 0.00000005960465, w: -0.00000005960465}
-  m_LocalPosition: {x: 18.64, y: 3.03, z: 2.04}
+  m_LocalPosition: {x: 21.67, y: 0.94, z: 2.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -53438,6 +53438,9 @@ MonoBehaviour:
   xGridSize: 1
   yGridSize: 1
   zGridSize: 1
+  xGridOffset: 1
+  yGridOffset: 1
+  zGridOffset: 1
   startingContainers: 1
 --- !u!1 &1458240866 stripped
 GameObject:
@@ -62881,10 +62884,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aadc47c9a2202082a53ddf510777bbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StaticCargoSystem
-  xGridSize: 10
-  yGridSize: 10
+  xGridSize: 1
+  yGridSize: 2
   zGridSize: 10
-  startingContainers: 0
+  xGridOffset: 5
+  yGridOffset: 5
+  zGridOffset: 5
+  startingContainers: 15
 --- !u!1 &1697866506 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5838575102860178130, guid: 2cd9e7c2a7b23864399dbe8de568ae6f, type: 3}
